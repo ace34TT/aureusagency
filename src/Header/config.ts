@@ -10,10 +10,14 @@ export const Header: GlobalConfig = {
   },
   fields: [
     {
-      name : "logo",
-      type : "upload",
-      required : true,
+      name: 'logo',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+      admin: {
+        description: 'Logo de l’agence (format SVG ou PNG recommandé)',
       },
+    },
     {
       name: 'navItems',
       type: 'array',
@@ -28,6 +32,19 @@ export const Header: GlobalConfig = {
         components: {
           RowLabel: '@/Header/RowLabel#RowLabel',
         },
+      },
+    },
+    {
+      name: 'buttons',
+      type: 'array',
+      maxRows: 2,
+      fields: [
+        link({
+          appearances: ["default"],
+        }),
+      ],
+      admin: {
+        initCollapsed: true,
       },
     },
   ],
