@@ -12,12 +12,11 @@ import { createPortal } from 'react-dom'
 import { Button } from '@payloadcms/ui'
 import { RiCloseLargeLine } from 'react-icons/ri'
 import { GiHamburgerMenu } from 'react-icons/gi'
+import { HeaderButtons, HeaderNavItems } from '@/types'
 
 interface HeaderClientProps {
   data: Header
 }
-type HeaderNavItems = NonNullable<Header['navItems']>
-type HeaderButtons = NonNullable<Header['buttons']>
 
 const getPathSegment = (path: string) => path.split('/')[1] ?? ''
 
@@ -173,7 +172,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   const { logo, navItems, buttons } = data
   const navMenus: HeaderNavItems = navItems ?? []
   const navButtons: HeaderButtons = buttons ?? []
-  const logoUrl = typeof logo === 'string' ? logo : logo?.url ?? ''
+  const logoUrl = typeof logo === 'string' ? logo : (logo?.url ?? '')
 
   useEffect(() => {
     // 1. Reset du thème lors du changement de page
