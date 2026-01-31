@@ -51,22 +51,21 @@ import {
   FaYelp,
   FaYoutube,
 } from 'react-icons/fa6'
-import type { Footer, Global, Header } from '@/payload-types'
+import type { Footer, Global } from '@/payload-types'
 import { FaSignal } from 'react-icons/fa'
 import { getMediaUrl } from '@/utilities/getMediaUrl'
 
 import Image from 'next/image'
-import { FooterNavItem, SocialLinks } from '@/types'
-
-
+import { HeaderNavItems, SocialLinks } from '@/types'
 
 export async function Footer() {
-  const footerData: Footer = await getCachedGlobal('footer', 1)() as Footer;
-  const globalData : Global = await getCachedGlobal('global', 1)() as Global;
+  const footerData: Footer = (await getCachedGlobal('footer', 1)()) as Footer
+  const globalData: Global = (await getCachedGlobal('global', 1)()) as Global
 
+  const { logo, navItems, legalLinks } = footerData
 
-  const { logo , navItems, legalLinks } = footerData
-  const { socialLinks } = globalData;
+  console.log(navItems)
+  const { socialLinks } = globalData
   const logoUrl = getMediaUrl(logo)
 
   const iconMap: Record<string, JSX.Element> = {
@@ -125,19 +124,29 @@ export async function Footer() {
     YOUTUBE: <FaYoutube size={22} className="text-current" />,
   }
 
-  const renderLinks = (links: FooterNavItem) =>
-    links?.map((link) => (
-      <li key={link.link.url}>
-        <Link
-          href={link.link.url ?? "#"}
-          target={link.link.newTab ? '_blank' : undefined}
-          rel={link.link.newTab ? 'noopener noreferrer' : undefined}
-          className="hover:text-white transition"
-        >
-          {link.link.newTab}
-        </Link>
-      </li>
-    ))
+  const renderLinks = (links: HeaderNavItems) =>
+    links?.map((item, index) => {
+      const { link, id } = item
+
+      // Détermination de l'URL : Priorité à la référence interne, sinon URL custom
+      const href =
+        link.type === 'reference' && typeof link.reference?.value === 'object'
+          ? `/${link.reference.value.slug}` // On utilise le slug de la page liée
+          : link.url || '#'
+
+      return (
+        <li key={id || index}>
+          <Link
+            href={href}
+            target={link.newTab ? '_blank' : undefined}
+            rel={link.newTab ? 'noopener noreferrer' : undefined}
+            className="hover:text-white transition-colors"
+          >
+            {link.label}
+          </Link>
+        </li>
+      )
+    })
 
   const renderSocialIcons = (links: SocialLinks) =>
     links?.map((link) => {
@@ -166,7 +175,7 @@ export async function Footer() {
           <div className="space-y-6">
             {logo && (
               <div className="relative w-40 h-40 mb-4">
-                <Image src={logoUrl} alt={""} fill sizes="160px" className="object-contain" />
+                <Image src={logoUrl} alt={''} fill sizes="160px" className="object-contain" />
               </div>
             )}
             {socialLinks?.length ? (
