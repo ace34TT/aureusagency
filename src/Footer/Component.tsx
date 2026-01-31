@@ -180,7 +180,6 @@ export async function Footer() {
             )}
             {socialLinks?.length ? (
               <div>
-                {/*<p className="text-sm font-semibold text-slate-200 mb-3">Suivez-nous</p>*/}
                 <ul className="flex flex-wrap gap-3">{renderSocialIcons(socialLinks)}</ul>
               </div>
             ) : null}
