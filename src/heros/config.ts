@@ -39,7 +39,7 @@ export const hero: Field = {
       required: true,
     },
     {
-      name: 'richText',
+      name: 'title',
       type: 'richText',
       editor: lexicalEditor({
         features: ({ rootFeatures }) => {
@@ -51,7 +51,22 @@ export const hero: Field = {
           ]
         },
       }),
-      label: false,
+      label: 'Title',
+    },
+    {
+      name: 'description',
+      type: 'richText',
+      editor: lexicalEditor({
+        features: ({ rootFeatures }) => {
+          return [
+            ...rootFeatures,
+            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+            FixedToolbarFeature(),
+            InlineToolbarFeature(),
+          ]
+        },
+      }),
+      label: 'Description',
     },
     linkGroup({
       overrides: {
@@ -65,7 +80,6 @@ export const hero: Field = {
         condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
       },
       relationTo: 'media',
-      required: true,
     },
   ],
   label: false,
