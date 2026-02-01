@@ -6,7 +6,7 @@ import type { Page } from '@/payload-types'
 import Link from 'next/link'
 import { theme } from '@/utilities/theme'
 
-export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText }) => {
+export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, title, description }) => {
   const { setHeaderTheme } = useHeaderTheme()
 
   useEffect(() => {
