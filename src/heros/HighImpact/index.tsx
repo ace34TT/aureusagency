@@ -5,6 +5,7 @@ import React, { useEffect } from 'react'
 import type { Page } from '@/payload-types'
 import Link from 'next/link'
 import { theme } from '@/utilities/theme'
+import Image from 'next/image'
 
 export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, title, description }) => {
   const { setHeaderTheme } = useHeaderTheme()
@@ -14,31 +15,21 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, title, de
   })
 
   return (
-    // <section className={'container mx-auto py-24'}>
-    //   <div className="max-w-146 md:text-center mx-auto ">
-    //     {richText && <RichText className="mb-6" data={richText} enableGutter={false} />}
-    //     {Array.isArray(links) && links.length > 0 && (
-    //       <ul className="flex md:justify-center gap-4">
-    //         {links.map(({ link }, i) => {
-    //           return (
-    //             <li key={i}>
-    //               <CMSLink {...link} />
-    //             </li>
-    //           )
-    //         })}
-    //       </ul>
-    //     )}
-    //   </div>
-    //   {/*<div className="min-h-[80vh] select-none">*/}
-    //   {/*  {media && typeof media === 'object' && (*/}
-    //   {/*    <Media fill imgClassName="-z-10 object-cover" priority resource={media} />*/}
-    //   {/*  )}*/}
-    //   {/*</div>*/}
-    // </section>
     <section
-      className={`relative min-h-screen overflow-hidden px-6 pb-24 pt-28 flex items-center justify-center bg-[#F5F2EB]`}
+      className={`relative min-h-screen overflow-hidden px-6 pb-24 pt-28 flex items-center justify-center bg-[#f9f2ff]`}
     >
-      <div className="relative mx-auto container">
+      <div className="absolute inset-0 z-0 h-full w-full overflow-hidden pointer-events-none">
+        {/* Large Soft Yellow (The 'Aureus' touch) - Top Right */}
+        <div className="absolute top-[-10%] right-[-5%] h-150 w-150 rounded-full bg-yellow-100/40 blur-[120px]" />
+
+        {/* Large Blue Glow - Center Left */}
+        <div className="absolute top-[10%] left-[-10%] h-200 w-200 rounded-full bg-blue-200/30 blur-[150px]" />
+
+        {/* Purple/Indigo Glow - Bottom Center to bridge the two */}
+        <div className="absolute bottom-[-10%] left-[20%] h-175 w-225 rounded-full bg-purple-200/30 blur-[130px]" />
+      </div>
+
+      <div className="relative mx-auto container z-40">
         <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <div className="inline-flex items-center gap-3 rounded-full border border-[#0F172A]/15 px-4 py-2 text-xs uppercase tracking-[0.35em] text-[#0F172A]/70">
@@ -74,44 +65,14 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, title, de
           </div>
 
           <div className="relative">
-            <div className="relative rounded-4xl border border-[#0F172A]/10 bg-white/80 p-8 shadow-[0_30px_80px_rgba(15,23,42,0.2)] backdrop-blur">
-              <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-[#0F172A]/60">
-                <span>Pulse</span>
-                <span>04 / 09</span>
-              </div>
-              <div className="mt-10 space-y-6">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.3em] text-[#0F172A]/50">Conversion</p>
-                  <div className="mt-3 h-2 rounded-full bg-[#0F172A]/10">
-                    <div className="h-2 w-[78%] rounded-full bg-[#0F172A]" />
-                  </div>
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.3em] text-[#0F172A]/50">
-                    Performance
-                  </p>
-                  <div className="mt-3 h-2 rounded-full bg-[#0F172A]/10">
-                    <div className="h-2 w-[92%] rounded-full bg-[#1B9AAA]" />
-                  </div>
-                </div>
-                <div className="rounded-2xl border border-[#0F172A]/10 bg-[#F5F2EB] p-5">
-                  <p className="text-sm font-semibold text-[#0F172A]">Stack express</p>
-                  <p className="mt-2 text-sm text-[#0F172A]/70">
-                    Next.js, Strapi, design system maison. Vous gardez la main.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="absolute -bottom-10 -left-6 -rotate-6 rounded-2xl border border-[#0F172A]/10 bg-white px-6 py-4 shadow-xl">
-              <p className="text-xs uppercase tracking-[0.3em] text-[#0F172A]/60">Impact</p>
-              <p className="mt-2 text-2xl font-(--font-marcellus) text-[#0F172A]">+43%</p>
-              <p className="text-xs text-[#0F172A]/60">taux de demande</p>
-            </div>
-
-            <div className="absolute -top-8 right-0 rotate-[5deg] rounded-2xl border border-[#0F172A]/10 bg-[#0F172A] px-5 py-4 text-[#F5F2EB] shadow-2xl">
-              <p className="text-xs uppercase tracking-[0.3em] text-[#F5F2EB]/70">Timeline</p>
-              <p className="mt-2 text-lg font-semibold">Sprint 2/4</p>
+            <div>
+              <Image
+                src={'/undraw_day-dreaming_2mlz.svg'}
+                className={'mx-auto'}
+                width={500}
+                height={500}
+                alt={''}
+              />
             </div>
           </div>
         </div>

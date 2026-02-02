@@ -15,6 +15,7 @@ import Process from '@/blocks/Process/Component'
 import Faq from '@/blocks/Faq/Component'
 import WorkShowcase from '@/blocks/WorkShowCase/Component'
 import Services from '@/blocks/Services/Component'
+import EmailCapture from '@/blocks/EmailCapture/Component'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -77,6 +78,7 @@ export default async function Page({ params: paramsPromise }: Args) {
       <Services />
       <ValueProps />
       <Process />
+      <EmailCapture />
       <Faq />
       <WorkShowcase />
       {/*<RenderBlocks blocks={layout} />*/}

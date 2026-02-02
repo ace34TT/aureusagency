@@ -13,6 +13,7 @@ import { Button } from '@payloadcms/ui'
 import { RiCloseLargeLine } from 'react-icons/ri'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { HeaderButtons, HeaderNavItems } from '@/types'
+import { CMSLink } from '@/components/Link'
 
 interface HeaderClientProps {
   data: Header
@@ -174,6 +175,8 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   const navButtons: HeaderButtons = buttons ?? []
   const logoUrl = typeof logo === 'string' ? logo : (logo?.url ?? '')
 
+  console.log(navItems![0].link.reference || '')
+
   useEffect(() => {
     // 1. Reset du thème lors du changement de page
     setHeaderTheme(null)
@@ -218,7 +221,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
     items.map(({ link }) => (
       <li key={link.url ?? link.label} className="relative">
         <NavLink
-          href={link.url ?? '#'}
+          href={link.reference?.value ?? '#'}
           newTab={link.newTab ?? undefined}
           onClick={closeMenu}
           isActive={activeSegment === getPathSegment(link.url ?? '')}
@@ -265,19 +268,15 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
                 </Link>
               </div>
 
-              {/* Right Menus + Buttons */}
-              <div className="ml-auto flex items-center gap-8">
+              <div className="ml-auto flex items-center gap-24">
                 <ul className="flex items-center space-x-8">{renderNavItems(navMenus)}</ul>
                 <div className="flex items-center gap-4">
-                  {navButtons.map((button) => (
-                    <Button
-                      key={button.link.url ?? button.link.label}
-                      el="link"
-                      url={button.link.url ?? '#'}
-                      newTab={button.link.newTab ?? undefined}
-                    >
-                      {button.link.label}
-                    </Button>
+                  {navButtons.map((button, i) => (
+                    <CMSLink
+                      key={i}
+                      {...button.link} // Cela passe automatiquement url, label, appearance, etc.
+                      appearance={button.link.appearance || 'default'}
+                    />
                   ))}
                 </div>
               </div>
