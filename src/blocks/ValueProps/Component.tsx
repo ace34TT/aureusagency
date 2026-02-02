@@ -2,11 +2,8 @@ import { theme } from '@/utilities/theme'
 
 export const ValueProps = () => {
   return (
-    <section className={`relative px-6 py-24`}>
-      <div className="absolute inset-0 opacity-60">
-        <div className="absolute left-0 top-0 h-full w-[45%]" />
-      </div>
-      <div className="relative mx-auto container">
+    <section className="relative px-6 py-24 overflow-hidden bg-white">
+      <div className="relative mx-auto container z-10">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <p className={`text-xs uppercase tracking-[0.35em] ${theme.inkSoft}`}>
@@ -40,13 +37,20 @@ export const ValueProps = () => {
           ].map((item) => (
             <div
               key={item.title}
-              className="group relative overflow-hidden rounded-3xl border border-[#0F172A]/10 bg-white/80 p-8 shadow-[0_20px_60px_rgba(15,23,42,0.1)]"
+              /* glass effect ajouté pour laisser passer les couleurs du fond */
+              className="group relative overflow-hidden rounded-3xl border border-[#0F172A]/10 bg-white/40 backdrop-blur-sm p-8 transition-all hover:border-primary/30"
             >
-              <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#F6B3A7]/30 blur-2xl transition group-hover:scale-110" />
-              <div className="absolute -left-14 bottom-0 h-28 w-28 rounded-full bg-[#9AD5CA]/40 blur-2xl transition group-hover:scale-110" />
-              <p className="text-xs uppercase tracking-[0.35em] text-[#0F172A]/50">Focus</p>
-              <h3 className="mt-4 text-xl font-semibold text-[#0F172A]">{item.title}</h3>
-              <p className={`mt-3 text-sm ${theme.inkMuted}`}>{item.copy}</p>
+              {/* Cercles internes aux cartes (vos couleurs pastel existantes) */}
+              <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#F6B3A7]/30 blur-2xl transition group-hover:scale-125" />
+              <div className="absolute -left-14 bottom-0 h-28 w-28 rounded-full bg-[#9AD5CA]/40 blur-2xl transition group-hover:scale-125" />
+
+              <p className="relative z-10 text-xs uppercase tracking-[0.35em] text-[#0F172A]/50">
+                Focus
+              </p>
+              <h3 className="relative z-10 mt-4 text-xl font-semibold text-[#0F172A]">
+                {item.title}
+              </h3>
+              <p className={`relative z-10 mt-3 text-sm ${theme.inkMuted}`}>{item.copy}</p>
             </div>
           ))}
         </div>

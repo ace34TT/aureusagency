@@ -21,7 +21,7 @@ const Process = () => {
   ]
 
   return (
-    <section className={`relative px-6 py-24 ${theme.page}`}>
+    <section className={`relative px-6 py-24 bg-[#fff4e6]`}>
       <div className="relative mx-auto container">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>

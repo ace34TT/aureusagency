@@ -20,7 +20,7 @@ const WorkShowcase = () => {
   ]
 
   return (
-    <section id="work" className={`relative px-6 py-24 ${theme.page}`}>
+    <section id="work" className={`relative px-6 py-24`}>
       <div className="relative mx-auto container">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>

@@ -17,7 +17,7 @@ const Faq = () => {
   ]
 
   return (
-    <section className={`relative px-6 py-24 ${theme.page}`}>
+    <section className={`relative px-6 py-24`}>
       <div className="relative mx-auto container">
         <div className="text-center">
           <p className={`text-xs uppercase tracking-[0.35em] ${theme.inkSoft}`}>FAQ</p>

@@ -10,12 +10,10 @@ import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
-import { ValueProps } from '@/blocks/ValueProps/Component'
 import Process from '@/blocks/Process/Component'
 import Faq from '@/blocks/Faq/Component'
 import WorkShowcase from '@/blocks/WorkShowCase/Component'
 import Services from '@/blocks/Services/Component'
-import EmailCapture from '@/blocks/EmailCapture/Component'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -75,11 +73,22 @@ export default async function Page({ params: paramsPromise }: Args) {
       <PayloadRedirects disableNotFound url={url} />
       {draft && <LivePreviewListener />}
       <RenderHero {...hero} />
-      <ValueProps />
       <Services />
       <Process />
-      <EmailCapture />
       <Faq />
+      <section className="container mx-auto px-6 my-24 py-24 flex flex-col items-center justify-center mx-auto w-full text-center rounded-2xl  md:py-24 bg-[url('https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/banners/image-1.png')] bg-cover bg-center bg-no-repeat">
+        <h1 className="text-2xl md:text-3xl font-medium text-white max-w-2xl">
+          Empower Your Sales & Marketing with a Next-Gen AI Workforce
+        </h1>
+        <div className="h-[3px] w-32 my-1 bg-gradient-to-l from-transparent to-indigo-600"></div>
+        <p className="text-sm md:text-base text-white max-w-xl">
+          Leverage AI Agents for real-time calling and unified multi-channel engagement, optimizing
+          customer interactions at scale.
+        </p>
+        <button className="px-8 py-2.5 mt-4 text-sm bg-gradient-to-r from-indigo-600 to-violet-500 hover:scale-105 transition duration-300 text-white rounded-full">
+          Get Started
+        </button>
+      </section>
       <WorkShowcase />
       {/*<RenderBlocks blocks={layout} />*/}
     </article>
