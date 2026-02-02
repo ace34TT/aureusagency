@@ -22,10 +22,10 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, title, de
       >
         <div className="relative h-full w-full">
           {/* Vos cercles ici */}
-          <div className="absolute -top-[10%] -right-[5%] h-[600px] w-[600px] rounded-full bg-yellow-100/40 blur-[120px]" />
-          <div className="absolute top-[10%] -left-[10%] h-[800px] w-[800px] rounded-full bg-blue-200/30 blur-[150px]" />
+          <div className="absolute -top-[10%] -right-[5%] h-150 w-150 rounded-full bg-yellow-100/40 blur-[120px]" />
+          <div className="absolute top-[10%] -left-[10%] h-200 w-200 rounded-full bg-blue-200/30 blur-[150px]" />
           {/* Ajustement du cercle du bas pour qu'il ne soit pas trop "écrasé" */}
-          <div className="absolute bottom-[5%] left-[20%] h-[700px] w-[900px] rounded-full bg-purple-200/30 blur-[130px]" />
+          <div className="absolute bottom-[5%] left-[20%] h-175 w-225 rounded-full bg-purple-200/30 blur-[130px]" />
         </div>
       </div>
 

@@ -5,7 +5,6 @@ import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
 import { Quote } from 'lucide-react'
 import { theme } from '@/utilities/theme'
 
-// Import des styles Swiper indispensables
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/effect-fade'
@@ -73,13 +72,13 @@ export const Testimonials = () => {
               clickable: true,
               dynamicBullets: true,
             }}
-            className="testimonial-swiper !pb-20"
+            className="testimonial-swiper pb-20!"
           >
             {testimonials.map((t, index) => (
               <SwiperSlide key={index}>
-                <div className="flex flex-col items-center text-center">
+                <div className="flex flex-col items-center text-center cursor-grab">
                   {/* Icône Quote stylisée comme tes étapes Process */}
-                  <div className="mb-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-50 border border-[#0F172A]/5 shadow-sm text-primary/40">
+                  <div className="mb-10 flex h-16 w-16 items-center justify-center rounded-2xl text-primary/40">
                     <Quote size={32} />
                   </div>
 
@@ -106,13 +105,13 @@ export const Testimonials = () => {
       {/* Style pour la pagination customisée aux couleurs du thème */}
       <style jsx global>{`
         .testimonial-swiper .swiper-pagination-bullet-active {
-          background: #0f172a !important;
+          background: #6c63ff !important;
           width: 20px !important;
           border-radius: 4px !important;
         }
+
         .testimonial-swiper .swiper-pagination-bullet {
           background: #0f172a;
-          opacity: 0.15;
         }
       `}</style>
     </section>
