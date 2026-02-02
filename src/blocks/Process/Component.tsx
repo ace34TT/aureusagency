@@ -41,7 +41,7 @@ const Process = () => {
               className="relative rounded-3xl border border-[#0F172A]/10 bg-white/80 p-6"
             >
               <div className="flex items-center gap-4">
-                <div className="h-12 w-12 rounded-full border border-[#0F172A]/20 text-center text-sm font-semibold leading-[3rem] text-[#0F172A]">
+                <div className="h-12 w-12 rounded-full  border border-[#0F172A]/20 text-center text-sm font-semibold leading-12 text-[#0F172A]">
                   {index + 1}
                 </div>
                 <h3 className="text-base font-semibold text-[#0F172A]">{step.title}</h3>

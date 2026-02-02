@@ -43,7 +43,7 @@ const Services = () => {
                 key={item.title}
                 className="flex items-start gap-6 rounded-3xl border border-[#0F172A]/10 bg-white/80 p-6 shadow-[0_16px_50px_rgba(15,23,42,0.08)]"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0F172A] text-sm font-semibold text-[#F5F2EB]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/75 text-sm font-semibold text-[#F5F2EB]">
                   0{index + 1}
                 </div>
                 <div>

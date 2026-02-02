@@ -2,9 +2,9 @@ import { theme } from '@/utilities/theme'
 
 export const ValueProps = () => {
   return (
-    <section className={`relative px-6 py-24 ${theme.page}`}>
+    <section className={`relative px-6 py-24`}>
       <div className="absolute inset-0 opacity-60">
-        <div className="absolute left-0 top-0 h-full w-[45%] bg-[radial-gradient(circle_at_left,rgba(15,23,42,0.08),transparent_65%)]" />
+        <div className="absolute left-0 top-0 h-full w-[45%]" />
       </div>
       <div className="relative mx-auto container">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">

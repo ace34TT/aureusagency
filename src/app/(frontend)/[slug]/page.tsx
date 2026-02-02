@@ -75,8 +75,8 @@ export default async function Page({ params: paramsPromise }: Args) {
       <PayloadRedirects disableNotFound url={url} />
       {draft && <LivePreviewListener />}
       <RenderHero {...hero} />
-      <Services />
       <ValueProps />
+      <Services />
       <Process />
       <EmailCapture />
       <Faq />
