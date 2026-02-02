@@ -169,8 +169,25 @@ export async function Footer() {
     })
 
   return (
-    <footer className="bg-[#0F172A] text-white py-14 px-6">
-      <div className="max-w-7xl mx-auto">
+    <footer className="relative bg-[#0F172A] text-white py-14 px-6 overflow-hidden">
+      {/* EFFET GLOWING (Bulles de fond) */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Bulle primaire (ton bleu OKLCH) qui vient du haut pour la transition */}
+        <div className="absolute -top-[20%] left-1/2 -translate-x-1/2 h-[400px] w-[600px] rounded-full bg-primary/10 blur-[100px]" />
+        {/* Petite bulle violette sur le côté pour le rappel du Hero */}
+        <div className="absolute bottom-[10%] -right-[5%] h-[300px] w-[300px] rounded-full bg-purple-500/5 blur-[80px]" />
+      </div>
+
+      {/* MASQUE DE TRANSITION (Évite le rude cut avec la section FAQ) */}
+      <div
+        className="absolute inset-0 z-10 pointer-events-none"
+        style={{
+          maskImage: 'linear-gradient(to bottom, transparent, black 15%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 15%)',
+        }}
+      />
+
+      <div className="relative z-20 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:justify-between gap-10 mb-10">
           <div className="space-y-6">
             {logo && (
@@ -185,16 +202,23 @@ export async function Footer() {
             ) : null}
           </div>
           <div>
-            <h3 className="font-semibold mb-4 text-slate-100">Liens utiles</h3>
-            <ul className="space-y-2 text-slate-400">{renderLinks(navItems || [])}</ul>
+            <h3 className="font-(--font-marcellus) text-lg mb-6 text-slate-100 uppercase tracking-wider">
+              Liens utiles
+            </h3>
+            <ul className="space-y-3 text-slate-400 hover:text-primary-foreground">
+              {renderLinks(navItems || [])}
+            </ul>
           </div>
           <div>
-            <h3 className="font-semibold mb-4 text-slate-100">Liens légaux</h3>
-            <ul className="space-y-2 text-slate-400 text-sm">{renderLinks(legalLinks || [])}</ul>
+            <h3 className="font-(--font-marcellus) text-lg mb-6 text-slate-100 uppercase tracking-wider">
+              Liens légaux
+            </h3>
+            <ul className="space-y-3 text-slate-400 text-sm">{renderLinks(legalLinks || [])}</ul>
           </div>
         </div>
-        <div className="border-t border-slate-800 pt-6 text-center text-slate-400 text-sm">
-          © {new Date().getFullYear()} Tous droits réservés.
+
+        <div className="border-t border-white/5 pt-8 text-center text-slate-500 text-[10px] uppercase tracking-[0.2em]">
+          © {new Date().getFullYear()} Aureus Agency. Tous droits réservés.
         </div>
       </div>
     </footer>
