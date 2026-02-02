@@ -1,25 +1,21 @@
 'use client'
 import React from 'react'
 import Marquee from 'react-fast-marquee'
-import { Code2, Cpu, Gauge, Globe, Layout, ShieldCheck, Sparkles, Zap } from 'lucide-react'
 
 export const TechnoMarquee = () => {
   const expertise = [
-    { name: 'Next.js 15', icon: <Cpu size={18} /> },
-    { name: 'Payload CMS', icon: <Layout size={18} /> },
-    { name: 'UI/UX Design', icon: <Sparkles size={18} /> },
-    { name: 'Tailwind CSS', icon: <Code2 size={18} /> },
-    { name: 'TypeScript', icon: <ShieldCheck size={18} /> },
-    { name: 'SEO Strategy', icon: <Globe size={18} /> },
-    { name: 'Performance', icon: <Gauge size={18} /> },
-    { name: 'Ultra Fast', icon: <Zap size={18} /> },
+    { name: 'Next.js 15' },
+    { name: 'Payload CMS' },
+    { name: 'UI/UX Design' },
+    { name: 'Tailwind CSS' },
+    { name: 'TypeScript' },
+    { name: 'SEO Strategy' },
+    { name: 'Performance' },
+    { name: 'Ultra Fast' },
   ]
 
   return (
-    <section className="relative py-24  overflow-hidden bg-white">
-      {/* DÉGRADÉ BLANC SUR LES CÔTÉS
-          On utilise un masque CSS linéaire : transparent au bord, noir (opaque) au centre.
-      */}
+    <section className="relative py-20 overflow-hidden bg-white">
       <div
         className="relative w-full"
         style={{
@@ -28,28 +24,16 @@ export const TechnoMarquee = () => {
             'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
         }}
       >
-        <Marquee
-          gradient={false} // On gère le dégradé nous-mêmes avec le masque ci-dessus pour plus de précision
-          speed={60}
-          pauseOnHover={true}
-          delay={0}
-          play={true}
-        >
-          {/* ASTUCE : On double la liste ici même si React Fast Marquee le fait en interne,
-              cela garantit qu'il n'y a JAMAIS de vide sur les écrans ultra-larges.
-          */}
+        <Marquee gradient={false} speed={50} pauseOnHover={true} play={true}>
           {[...expertise, ...expertise].map((item, index) => (
-            <div
-              key={index}
-              className="group mx-4 flex items-center gap-4 rounded-2xl border border-[#0F172A]/5 bg-slate-50/40 px-8 py-5 transition-all duration-300 hover:border-primary/40 hover:bg-white hover:shadow-2xl hover:shadow-primary/5"
-            >
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-[#0F172A]/60 shadow-sm transition-all duration-500 group-hover:bg-primary group-hover:text-white group-hover:rotate-[360deg]">
-                {item.icon}
-              </div>
-
-              <span className="text-xl font-medium tracking-tight text-[#0F172A]/70 transition-colors group-hover:text-[#0F172A]">
+            <div key={index} className="mx-10 flex items-center">
+              {/* Par défaut : Gris neutre / Au survol : Bleu vibrant */}
+              <span className="cursor-default text-4xl md:text-6xl font-black tracking-tighter text-gray-400 transition-all duration-300 hover:text-primary hover:scale-105">
                 {item.name}
               </span>
+
+              {/* Séparateur gris très discret */}
+              <span className="ml-20 text-3xl text-gray-200 font-light">/</span>
             </div>
           ))}
         </Marquee>
