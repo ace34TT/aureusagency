@@ -11,15 +11,22 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, title, de
     <section
       className={`relative min-h-screen overflow-hidden px-6 pb-24 pt-28 flex items-center justify-center bg-linear-to-b from-[#f9f2ff] to-white`}
     >
-      <div className="absolute inset-0 z-0 h-full w-full overflow-hidden pointer-events-none">
-        {/* Large Soft Yellow (The 'Aureus' touch) - Top Right */}
-        <div className="absolute top-[-10%] right-[-5%] h-150 w-150 rounded-full bg-yellow-100/40 blur-[120px]" />
-
-        {/* Large Blue Glow - Center Left */}
-        <div className="absolute top-[10%] left-[-10%] h-200 w-200 rounded-full bg-blue-200/30 blur-[150px]" />
-
-        {/* Purple/Indigo Glow - Bottom Center to bridge the two */}
-        <div className="absolute bottom-[-10%] left-[20%] h-175 w-225 rounded-full bg-purple-200/30 blur-[130px]" />
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          // Crée un fondu progressif en haut et surtout en bas
+          maskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)',
+          WebkitMaskImage:
+            'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)',
+        }}
+      >
+        <div className="relative h-full w-full">
+          {/* Vos cercles ici */}
+          <div className="absolute -top-[10%] -right-[5%] h-[600px] w-[600px] rounded-full bg-yellow-100/40 blur-[120px]" />
+          <div className="absolute top-[10%] -left-[10%] h-[800px] w-[800px] rounded-full bg-blue-200/30 blur-[150px]" />
+          {/* Ajustement du cercle du bas pour qu'il ne soit pas trop "écrasé" */}
+          <div className="absolute bottom-[5%] left-[20%] h-[700px] w-[900px] rounded-full bg-purple-200/30 blur-[130px]" />
+        </div>
       </div>
 
       <div className="relative mx-auto container z-40">
