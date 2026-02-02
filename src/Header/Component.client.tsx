@@ -258,7 +258,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
                   {navButtons.map((button, i) => (
                     <CMSLink
                       key={i}
-                      {...button.link} // Cela passe automatiquement url, label, appearance, etc.
+                      {...button.link}
                       appearance={button.link.appearance || 'default'}
                     />
                   ))}
