@@ -21,29 +21,6 @@ interface HeaderClientProps {
 
 const getPathSegment = (path: string) => path.split('/')[1] ?? ''
 
-const NavLink: FC<{
-  href: string
-  newTab?: boolean
-  onClick?: () => void
-  children: React.ReactNode
-  isActive: boolean
-}> = ({ href, newTab, onClick, children, isActive }) => (
-  <Link
-    href={href}
-    target={newTab ? '_blank' : undefined}
-    rel={newTab ? 'noopener noreferrer' : undefined}
-    className={cn(
-      'hover:text-secondary-400 font-bold transition-colors duration-300 px-4 py-2 text-white',
-      isActive ? 'font-bold' : 'font-normal',
-    )}
-    onClick={onClick}
-    scroll={true}
-    prefetch={true}
-  >
-    {children}
-  </Link>
-)
-
 const MobileMenu: FC<{
   isOpen: boolean
   onClose: () => void
@@ -217,17 +194,24 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
     }
   }, [headerTheme, theme])
 
-  const renderNavItems = (items: HeaderNavItems) =>
+  const renderNavItems = (items: HeaderNavItems, isScrolled: boolean) =>
     items.map(({ link }) => (
       <li key={link.url ?? link.label} className="relative">
-        <NavLink
+        <Link
           href={link.reference?.value ?? '#'}
-          newTab={link.newTab ?? undefined}
+          target={link.newTab ? '_blank' : undefined}
+          rel={link.newTab ? 'noopener noreferrer' : undefined}
+          className={cn(
+            'hover:text-secondary-400 font-bold transition-colors duration-300 px-4 py-2',
+            activeSegment === getPathSegment(link.url ?? '') ? 'font-bold' : 'font-normal',
+            isScrolled ? 'text-white' : 'text-black',
+          )}
           onClick={closeMenu}
-          isActive={activeSegment === getPathSegment(link.url ?? '')}
+          scroll={true}
+          prefetch={true}
         >
           {link.label}
-        </NavLink>
+        </Link>
       </li>
     ))
 
@@ -235,10 +219,8 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
     <>
       <nav
         className={cn(
-          'w-full h-16 md:h-24 flex items-center fixed top-0 left-0 right-0 border-b  z-999 transition-all duration-300 ease-in-out font-[Roboto]',
-          isScrolled
-            ? 'bg-[#13233C80] border-white backdrop-blur-md'
-            : 'bg-[#13233C80] border-white/80 backdrop-blur-sm ',
+          'w-full h-16 md:h-24 flex items-center fixed top-0 left-0 right-0 z-999 transition-all duration-300 ease-in-out font-[Roboto]',
+          isScrolled ? 'bg-[#13233C80] border-white backdrop-blur-md' : '',
         )}
       >
         <div className="container mx-auto px-4 md:px-0">
@@ -269,7 +251,9 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
               </div>
 
               <div className="ml-auto flex items-center gap-24">
-                <ul className="flex items-center space-x-8">{renderNavItems(navMenus)}</ul>
+                <ul className="flex items-center space-x-8">
+                  {renderNavItems(navMenus, isScrolled)}
+                </ul>
                 <div className="flex items-center gap-4">
                   {navButtons.map((button, i) => (
                     <CMSLink
