@@ -2,7 +2,7 @@ import { theme } from '@/utilities/theme'
 
 const Services = () => {
   return (
-    <section className={`relative px-6 py-24 ${theme.page}`}>
+    <section className={`relative px-6 py-24 `}>
       <div className="relative mx-auto container">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div>

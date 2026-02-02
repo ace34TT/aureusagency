@@ -16,7 +16,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, title, de
 
   return (
     <section
-      className={`relative min-h-screen overflow-hidden px-6 pb-24 pt-28 flex items-center justify-center bg-[#f9f2ff]`}
+      className={`relative min-h-screen overflow-hidden px-6 pb-24 pt-28 flex items-center justify-center bg-linear-to-b from-[#f9f2ff] to-white`}
     >
       <div className="absolute inset-0 z-0 h-full w-full overflow-hidden pointer-events-none">
         {/* Large Soft Yellow (The 'Aureus' touch) - Top Right */}
