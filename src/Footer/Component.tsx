@@ -169,13 +169,13 @@ export async function Footer() {
     })
 
   return (
-    <footer className="relative bg-[#0F172A] text-white py-14 px-6 overflow-hidden">
+    <footer className="relative bg-[#26235e] text-white py-14 px-6 overflow-hidden">
       {/* EFFET GLOWING (Bulles de fond) */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Bulle primaire (ton bleu OKLCH) qui vient du haut pour la transition */}
-        <div className="absolute -top-[20%] left-1/2 -translate-x-1/2 h-[400px] w-[600px] rounded-full bg-primary/10 blur-[100px]" />
+        <div className="absolute -top-[20%] left-1/2 -translate-x-1/2 h-100 w-150 rounded-full bg-primary/10 blur-[100px]" />
         {/* Petite bulle violette sur le côté pour le rappel du Hero */}
-        <div className="absolute bottom-[10%] -right-[5%] h-[300px] w-[300px] rounded-full bg-purple-500/5 blur-[80px]" />
+        <div className="absolute bottom-[10%] -right-[5%] h-75 w-75 rounded-full bg-purple-500/5 blur-[80px]" />
       </div>
 
       {/* MASQUE DE TRANSITION (Évite le rude cut avec la section FAQ) */}
