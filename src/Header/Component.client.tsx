@@ -202,7 +202,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           target={link.newTab ? '_blank' : undefined}
           rel={link.newTab ? 'noopener noreferrer' : undefined}
           className={cn(
-            'hover:text-secondary-400 font-bold transition-colors duration-300 px-4 py-2',
+            'hover:text-secondary-400 transition-colors duration-300 px-4 py-2 font-(--font-marcellus)',
             activeSegment === getPathSegment(link.url ?? '') ? 'font-bold' : 'font-normal',
             isScrolled ? 'text-white' : 'text-black',
           )}
