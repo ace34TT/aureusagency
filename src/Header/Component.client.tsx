@@ -195,25 +195,33 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   }, [headerTheme, theme])
 
   const renderNavItems = (items: HeaderNavItems, isScrolled: boolean) =>
-    items.map(({ link }) => (
-      <li key={link.url ?? link.label} className="relative">
-        <Link
-          href={link.reference?.value ?? '#'}
-          target={link.newTab ? '_blank' : undefined}
-          rel={link.newTab ? 'noopener noreferrer' : undefined}
-          className={cn(
-            'hover:text-secondary-400 transition-colors duration-300 px-4 py-2 font-(--font-marcellus)',
-            activeSegment === getPathSegment(link.url ?? '') ? 'font-bold' : 'font-normal',
-            isScrolled ? 'text-white' : 'text-black',
-          )}
-          onClick={closeMenu}
-          scroll={true}
-          prefetch={true}
-        >
-          {link.label}
-        </Link>
-      </li>
-    ))
+    items.map(({ link }, index) => {
+      // 1. On détermine l'URL correcte
+      const href =
+        link.type === 'reference'
+          ? typeof link.reference?.value === 'object'
+            ? `/${link.reference.value.slug}`
+            : '#'
+          : (link.url ?? '#')
+
+      return (
+        <li key={link.label + index} className="relative">
+          <Link
+            href={href}
+            target={link.newTab ? '_blank' : undefined}
+            rel={link.newTab ? 'noopener noreferrer' : undefined}
+            className={cn(
+              'hover:text-secondary-400 transition-colors duration-300 px-4 py-2',
+              activeSegment === getPathSegment(href) ? 'font-bold' : 'font-normal',
+              isScrolled ? 'text-white' : 'text-black',
+            )}
+            onClick={closeMenu}
+          >
+            {link.label}
+          </Link>
+        </li>
+      )
+    })
 
   return (
     <>

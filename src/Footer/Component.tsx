@@ -130,9 +130,11 @@ export async function Footer() {
 
       // Détermination de l'URL : Priorité à la référence interne, sinon URL custom
       const href =
-        link.type === 'reference' && typeof link.reference?.value === 'object'
-          ? `/${link.reference.value.slug}` // On utilise le slug de la page liée
-          : link.url || '#'
+        link.type === 'reference'
+          ? typeof link.reference?.value === 'object'
+            ? `/${link.reference.value.slug}`
+            : '#'
+          : (link.url ?? '#')
 
       return (
         <li key={id || index}>
@@ -197,9 +199,7 @@ export async function Footer() {
             <h3 className="font-(--font-marcellus) text-lg mb-6 text-[#090814] uppercase tracking-wider">
               Liens utiles
             </h3>
-            <ul className="space-y-3 text-slate-400 hover:text-primary-foreground">
-              {renderLinks(navItems || [])}
-            </ul>
+            <ul className="space-y-3 text-slate-400 text-sm">{renderLinks(navItems || [])}</ul>
           </div>
           <div>
             <h3 className="font-(--font-marcellus) text-lg mb-6 text-[#090814] uppercase tracking-wider">
