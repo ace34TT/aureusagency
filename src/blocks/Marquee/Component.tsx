@@ -15,7 +15,7 @@ export const Marquee = () => {
   ]
 
   return (
-    <section className="relative py-20 overflow-hidden bg-white">
+    <section className="relative py-24 overflow-hidden bg-white">
       <div
         className="relative w-full"
         style={{

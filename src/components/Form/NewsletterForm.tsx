@@ -22,7 +22,7 @@ export const NewsletterForm = () => {
         className="w-full py-5 rounded-2xl text-sm font-black uppercase tracking-[0.3em] transition-all hover:scale-[1.02] active:scale-95 cursor-pointer shadow-lg"
         style={{ backgroundColor: 'oklch(59.73% 0.224 279.77deg)', color: 'white' }}
       >
-        S'abonner
+        S&apos;abonner
       </button>
     </form>
   )

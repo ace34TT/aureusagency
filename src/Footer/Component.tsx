@@ -33,6 +33,7 @@ import {
   FaQuora,
   FaRedditAlien,
   FaRss,
+  FaSignal,
   FaSlack,
   FaSnapchat,
   FaSoundcloud,
@@ -52,11 +53,12 @@ import {
   FaYoutube,
 } from 'react-icons/fa6'
 import type { Footer, Global } from '@/payload-types'
-import { FaSignal } from 'react-icons/fa'
 import { getMediaUrl } from '@/utilities/getMediaUrl'
 
 import Image from 'next/image'
 import { HeaderNavItems, SocialLinks } from '@/types'
+import { NewsletterForm } from '@/components/Form/NewsletterForm'
+import { theme } from '@/utilities/theme'
 
 export async function Footer() {
   const footerData: Footer = (await getCachedGlobal('footer', 1)()) as Footer
@@ -142,7 +144,7 @@ export async function Footer() {
             href={href}
             target={link.newTab ? '_blank' : undefined}
             rel={link.newTab ? 'noopener noreferrer' : undefined}
-            className="hover:text-[#090814] transition-colors"
+            className="hover:text-white transition-colors text-slate-400"
           >
             {link.label}
           </Link>
@@ -171,46 +173,67 @@ export async function Footer() {
     })
 
   return (
-    <footer className="relative text-white py-24 px-6 overflow-hidden">
-      {/* MASQUE DE TRANSITION (Évite le rude cut avec la section FAQ) */}
-      <div
-        className="absolute inset-0 z-10 pointer-events-none"
-        style={{
-          maskImage: 'linear-gradient(to bottom, transparent, black 15%)',
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 15%)',
-        }}
-      />
+    <footer className="relative bg-[#0F172A] text-white py-32 px-6 overflow-hidden">
+      {/* Cercles en arrière-plan (Coherents avec Process et Hero) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-[30%] -left-[10%] h-125 w-125 rounded-full bg-purple-900/20 blur-[120px]" />
+        <div className="absolute bottom-[10%] -right-[5%] h-125 w-125 rounded-full bg-blue-900/20 blur-[120px]" />
+      </div>
 
-      <div className="relative z-20 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:justify-between gap-10 mb-10">
-          <div className="space-y-6">
-            {logo && (
-              <div className="relative w-40 h-40 mb-4">
-                <Image src={logoUrl} alt={''} fill sizes="160px" className="object-contain" />
+      <div className="relative z-20 container mx-auto">
+        <div className="grid lg:grid-cols-2 gap-20 items-start">
+          {/* Colonne Gauche : Appel à l'action + Formulaire */}
+          <div className="max-w-xl">
+            <h2 className="text-5xl md:text-6xl font-(--font-marcellus) leading-tight mb-8">
+              Prêt à scaler votre <span className="text-primary italic">business</span> ?
+            </h2>
+            <p className={`text-lg text-slate-400 mb-10 ${theme.inkMuted}`}>
+              Rejoignez les leaders qui utilisent nos stratégies pour croître exponentiellement.
+            </p>
+            <div className="max-w-md">
+              <NewsletterForm />
+            </div>
+          </div>
+
+          {/* Colonne Droite : Navigation & Infos */}
+          <div className="grid sm:grid-cols-2 gap-12 lg:pl-12 pt-4">
+            <div className="space-y-8">
+              {logo && (
+                <div className="relative w-32 h-32 mb-4 opacity-90 grayscale hover:grayscale-0 transition-all duration-500">
+                  <Image src={logoUrl} alt={''} fill sizes="128px" className="object-contain" />
+                </div>
+              )}
+              <div className="text-slate-500 text-sm leading-relaxed">
+                Une agence dédiée à l&apos;excellence digitale et à la performance mesurable.
               </div>
-            )}
-            {/*{socialLinks?.length ? (*/}
-            {/*  <div>*/}
-            {/*    <ul className="flex flex-wrap gap-3">{renderSocialIcons(socialLinks)}</ul>*/}
-            {/*  </div>*/}
-            {/*) : null}*/}
-          </div>
-          <div>
-            <h3 className="font-(--font-marcellus) text-lg mb-6 text-[#090814] uppercase tracking-wider">
-              Liens utiles
-            </h3>
-            <ul className="space-y-3 text-slate-400 text-sm">{renderLinks(navItems || [])}</ul>
-          </div>
-          <div>
-            <h3 className="font-(--font-marcellus) text-lg mb-6 text-[#090814] uppercase tracking-wider">
-              Liens légaux
-            </h3>
-            <ul className="space-y-3 text-slate-400 text-sm">{renderLinks(legalLinks || [])}</ul>
+            </div>
+
+            <div className="grid gap-10">
+              <div>
+                <h3 className="font-(--font-marcellus) text-lg mb-6 text-white uppercase tracking-wider">
+                  Menu
+                </h3>
+                <ul className="space-y-4 text-base">{renderLinks(navItems || [])}</ul>
+              </div>
+              <div>
+                <h3 className="font-(--font-marcellus) text-lg mb-6 text-white uppercase tracking-wider">
+                  Légal
+                </h3>
+                <ul className="space-y-4 text-sm">{renderLinks(legalLinks || [])}</ul>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-[#090814] pt-8 text-center text-slate-500 text-[10px] uppercase tracking-[0.2em]">
-          © {new Date().getFullYear()} Aureus Agency. Tous droits réservés.
+        {/* Bas de page : Copyright & Socials */}
+        <div className="mt-24 pt-10 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-slate-500 text-xs uppercase tracking-[0.2em] font-medium">
+            © {new Date().getFullYear()} Aureus Agency. Tous droits réservés.
+          </div>
+
+          {socialLinks?.length ? (
+            <ul className="flex gap-4">{renderSocialIcons(socialLinks)}</ul>
+          ) : null}
         </div>
       </div>
     </footer>
