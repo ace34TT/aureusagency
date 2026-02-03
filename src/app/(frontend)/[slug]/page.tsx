@@ -65,10 +65,6 @@ export default async function Page({ params: paramsPromise }: Args) {
       {draft && <LivePreviewListener />}
       <RenderHero {...hero} />
       <RenderBlocks blocks={layout} />
-      {/*<Services />*/}
-      {/*<WorkShowcase />*/}
-      {/*<Process />*/}
-      {/*<Testimonials />*/}
     </article>
   )
 }
