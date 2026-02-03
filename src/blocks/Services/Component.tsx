@@ -9,7 +9,7 @@ type ServiceProps = {
   richDescription?: any
   services?: {
     title: string
-    richDescription: any
+    description: string
     icon: string | Media
     id?: string
   }[]
@@ -54,11 +54,7 @@ const Services = ({ tagline, richHeadline, richDescription, services }: ServiceP
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-[#0F172A]">{item.title}</h3>
-                  <div className={`mt-2 text-sm ${theme.inkMuted}`}>
-                    {item.richDescription && (
-                      <RichText data={item.richDescription} enableGutter={false} />
-                    )}
-                  </div>
+                  <div className={`mt-2 text-sm ${theme.inkMuted}`}>{item.description}</div>
                 </div>
               </div>
             ))}
