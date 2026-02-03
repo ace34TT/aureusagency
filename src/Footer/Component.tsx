@@ -140,7 +140,7 @@ export async function Footer() {
             href={href}
             target={link.newTab ? '_blank' : undefined}
             rel={link.newTab ? 'noopener noreferrer' : undefined}
-            className="hover:text-white transition-colors"
+            className="hover:text-[#090814] transition-colors"
           >
             {link.label}
           </Link>
@@ -169,15 +169,7 @@ export async function Footer() {
     })
 
   return (
-    <footer className="relative bg-[#26235e] text-white py-14 px-6 overflow-hidden">
-      {/* EFFET GLOWING (Bulles de fond) */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Bulle primaire (ton bleu OKLCH) qui vient du haut pour la transition */}
-        <div className="absolute -top-[20%] left-1/2 -translate-x-1/2 h-100 w-150 rounded-full bg-primary/10 blur-[100px]" />
-        {/* Petite bulle violette sur le côté pour le rappel du Hero */}
-        <div className="absolute bottom-[10%] -right-[5%] h-75 w-75 rounded-full bg-purple-500/5 blur-[80px]" />
-      </div>
-
+    <footer className="relative text-white py-24 px-6 overflow-hidden">
       {/* MASQUE DE TRANSITION (Évite le rude cut avec la section FAQ) */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
@@ -195,14 +187,14 @@ export async function Footer() {
                 <Image src={logoUrl} alt={''} fill sizes="160px" className="object-contain" />
               </div>
             )}
-            {socialLinks?.length ? (
-              <div>
-                <ul className="flex flex-wrap gap-3">{renderSocialIcons(socialLinks)}</ul>
-              </div>
-            ) : null}
+            {/*{socialLinks?.length ? (*/}
+            {/*  <div>*/}
+            {/*    <ul className="flex flex-wrap gap-3">{renderSocialIcons(socialLinks)}</ul>*/}
+            {/*  </div>*/}
+            {/*) : null}*/}
           </div>
           <div>
-            <h3 className="font-(--font-marcellus) text-lg mb-6 text-slate-100 uppercase tracking-wider">
+            <h3 className="font-(--font-marcellus) text-lg mb-6 text-[#090814] uppercase tracking-wider">
               Liens utiles
             </h3>
             <ul className="space-y-3 text-slate-400 hover:text-primary-foreground">
@@ -210,14 +202,14 @@ export async function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="font-(--font-marcellus) text-lg mb-6 text-slate-100 uppercase tracking-wider">
+            <h3 className="font-(--font-marcellus) text-lg mb-6 text-[#090814] uppercase tracking-wider">
               Liens légaux
             </h3>
             <ul className="space-y-3 text-slate-400 text-sm">{renderLinks(legalLinks || [])}</ul>
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-8 text-center text-slate-500 text-[10px] uppercase tracking-[0.2em]">
+        <div className="border-t border-[#090814] pt-8 text-center text-slate-500 text-[10px] uppercase tracking-[0.2em]">
           © {new Date().getFullYear()} Aureus Agency. Tous droits réservés.
         </div>
       </div>

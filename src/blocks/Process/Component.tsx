@@ -41,21 +41,6 @@ const Process = () => {
       <div className="relative mx-auto container z-10">
         <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
           {/* CÔTÉ GAUCHE : IMAGE & VISUEL */}
-          <div className="relative">
-            <div className="relative z-10 overflow-hidden rounded-3xl border border-[#0F172A]/5">
-              <Image
-                src="/Frame 182.png" // Remplacez par une image de collaboration tech
-                alt="Notre processus de travail"
-                width={600}
-                height={600}
-                className="w-full h-auto bg-slate-50 p-8 "
-              />
-            </div>
-            {/* Décoration sous l'image */}
-            <div className="absolute -bottom-6 -right-6 h-full w-full rounded-3xl border-2 border-dashed border-primary/20 -z-10" />
-          </div>
-
-          {/* CÔTÉ DROIT : CONTENU & ÉTAPES */}
           <div>
             <p className={`text-xs uppercase tracking-[0.35em] ${theme.inkSoft}`}>Notre Méthode</p>
             <h2 className="mt-4 text-4xl font-(--font-marcellus) text-[#0F172A] leading-tight">
@@ -88,6 +73,21 @@ const Process = () => {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* CÔTÉ DROIT : CONTENU & ÉTAPES */}
+          <div className="relative">
+            <div className="relative z-10 overflow-hidden rounded-3xl border border-[#0F172A]/5">
+              <Image
+                src="/Frame 182.png" // Remplacez par une image de collaboration tech
+                alt="Notre processus de travail"
+                width={600}
+                height={600}
+                className="w-full h-auto bg-slate-50 p-8 "
+              />
+            </div>
+            {/* Décoration sous l'image */}
+            <div className="absolute -bottom-6 -right-6 h-full w-full rounded-3xl border-2 border-dashed border-primary/20 -z-10" />
           </div>
         </div>
       </div>

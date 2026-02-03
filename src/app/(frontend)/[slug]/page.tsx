@@ -11,7 +11,6 @@ import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import Process from '@/blocks/Process/Component'
-import Faq from '@/blocks/Faq/Component'
 import WorkShowcase from '@/blocks/WorkShowCase/Component'
 import Services from '@/blocks/Services/Component'
 import { TechnoMarquee } from '@/blocks/Marquee/Component'
@@ -75,12 +74,13 @@ export default async function Page({ params: paramsPromise }: Args) {
       <PayloadRedirects disableNotFound url={url} />
       {draft && <LivePreviewListener />}
       <RenderHero {...hero} />
+      <TechnoMarquee />
       <Services />
       <WorkShowcase />
       <Process />
       <Testimonials />
       <TechnoMarquee />
-      <Faq />
+      {/*<Faq />*/}
       {/*<RenderBlocks blocks={layout} />*/}
     </article>
   )
