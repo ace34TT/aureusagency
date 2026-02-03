@@ -14,8 +14,14 @@ type ServiceProps = {
 
 const Services = ({ tagline, richHeadline, richDescription, services }: ServiceProps) => {
   return (
-    <section className={`relative px-6 py-24 `}>
-      <div className="relative mx-auto container">
+    <section className={`relative px-6 py-24 overflow-hidden`}>
+      {/* Cercles en arrière-plan (Coherents avec le reste du site) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-[10%] -left-[5%] h-125 w-125 rounded-full bg-purple-50/50 blur-[120px]" />
+        <div className="absolute bottom-[10%] -right-[5%] h-125 w-125 rounded-full bg-blue-50/40 blur-[120px]" />
+      </div>
+
+      <div className="relative mx-auto container z-10">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className={`text-xs uppercase tracking-[0.35em] ${theme.inkSoft}`}>

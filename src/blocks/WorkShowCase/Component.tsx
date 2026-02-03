@@ -16,8 +16,13 @@ type WorkShowcaseProps = {
 
 const WorkShowcase = ({ tagline, richHeadline, richDescription, projects }: WorkShowcaseProps) => {
   return (
-    <section id="work" className={`relative px-6 py-24`}>
-      <div className="relative mx-auto container">
+    <section id="work" className={`relative px-6 py-24 overflow-hidden`}>
+      {/* Cercles en arrière-plan (Coherents avec le reste du site) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-[20%] right-[10%] h-125 w-125 rounded-full bg-amber-50/40 blur-[120px]" />
+      </div>
+
+      <div className="relative mx-auto container z-10">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <p className={`text-xs uppercase tracking-[0.35em] ${theme.inkSoft}`}>
