@@ -26,12 +26,11 @@ export const TechnoMarquee = () => {
       >
         <Marquee gradient={false} speed={50} pauseOnHover={true} play={true}>
           {[...expertise, ...expertise].map((item, index) => (
-            <div key={index} className="mx-10 flex items-center">
-              {/* Par défaut : Gris neutre / Au survol : Bleu vibrant */}
-              <span className="cursor-default text-4xl md:text-6xl font-black tracking-tighter text-gray-400 transition-all duration-300 hover:text-primary hover:scale-105">
+            <div key={index} className="mx-10 flex items-center py-4">
+              {/* Ajout de py-4 ici */}
+              <span className="cursor-default text-4xl md:text-6xl font-black tracking-tighter text-gray-400 transition-all duration-300 hover:text-primary hover:scale-105 leading-tight">
                 {item.name}
               </span>
-
               {/* Séparateur gris très discret */}
               <span className="ml-20 text-3xl text-gray-200 font-light">/</span>
             </div>

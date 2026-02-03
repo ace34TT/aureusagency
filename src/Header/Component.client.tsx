@@ -211,9 +211,9 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
             target={link.newTab ? '_blank' : undefined}
             rel={link.newTab ? 'noopener noreferrer' : undefined}
             className={cn(
-              'hover:text-secondary-400 transition-colors duration-300 px-4 py-2',
+              'hover:text-secondary-400 transition-colors duration-300 px-4 py-2 hover:scale-105 animate-in ',
               activeSegment === getPathSegment(href) ? 'font-bold' : 'font-normal',
-              isScrolled ? 'text-white' : 'text-black',
+              isScrolled ? 'text-white hover:text-purple-100' : 'text-black hover:text-primary',
             )}
             onClick={closeMenu}
           >
