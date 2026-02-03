@@ -211,9 +211,13 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
             target={link.newTab ? '_blank' : undefined}
             rel={link.newTab ? 'noopener noreferrer' : undefined}
             className={cn(
-              'hover:text-secondary-400 transition-colors duration-300 px-4 py-2 hover:scale-105 animate-in ',
+              'relative transition-all duration-300 px-4 py-2 inline-block hover:scale-105 animate-in group',
               activeSegment === getPathSegment(href) ? 'font-bold' : 'font-normal',
               isScrolled ? 'text-white hover:text-purple-100' : 'text-black hover:text-primary',
+              'after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-0.5 after:bg-primary after:transition-all after:duration-300',
+              activeSegment === getPathSegment(href)
+                ? 'after:w-full'
+                : 'after:w-0 hover:after:w-full',
             )}
             onClick={closeMenu}
           >
