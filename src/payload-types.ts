@@ -863,7 +863,6 @@ export interface ServicesBlock {
     | {
         title: string;
         description: string;
-        icon: string | Media;
         id?: string | null;
       }[]
     | null;
@@ -1428,7 +1427,6 @@ export interface ServicesBlockSelect<T extends boolean = true> {
     | {
         title?: T;
         description?: T;
-        icon?: T;
         id?: T;
       };
   id?: T;

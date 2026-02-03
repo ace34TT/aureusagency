@@ -79,8 +79,8 @@ export const Testimonials = ({ tagline, richHeadline, testimonials }: Testimonia
                   </div>
 
                   {/* Contenu - Taille cohérente avec le Hero/Process */}
-                  <div className="font-(--font-marcellus) text-2xl md:text-4xl leading-tight text-[#0F172A]">
-                    {t.quote}
+                  <div className="font-sans italic text-xl md:text-3xl leading-relaxed text-[#0F172A] max-w-4xl mx-auto">
+                    &quot;{t.quote}&quot;
                   </div>
 
                   <div className="mt-10">

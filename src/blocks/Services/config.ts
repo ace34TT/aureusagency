@@ -33,12 +33,6 @@ export const Services: Block = {
           type: 'textarea',
           required: true,
         },
-        {
-          name: 'icon',
-          type: 'upload',
-          relationTo: 'media',
-          required: true,
-        },
       ],
     },
   ],
