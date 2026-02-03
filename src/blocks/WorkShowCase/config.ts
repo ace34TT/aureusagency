@@ -5,6 +5,20 @@ export const WorkShowcase: Block = {
   interfaceName: 'WorkShowcaseBlock',
   fields: [
     {
+      name: 'tagline',
+      type: 'text',
+    },
+    {
+      name: 'richHeadline',
+      type: 'richText',
+      label: 'Headline',
+    },
+    {
+      name: 'richDescription',
+      type: 'richText',
+      label: 'Description',
+    },
+    {
       name: 'projects',
       type: 'array',
       minRows: 1,

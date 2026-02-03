@@ -5,6 +5,15 @@ export const Process: Block = {
   interfaceName: 'ProcessBlock',
   fields: [
     {
+      name: 'tagline',
+      type: 'text',
+    },
+    {
+      name: 'richHeadline',
+      type: 'richText',
+      label: 'Headline',
+    },
+    {
       name: 'steps',
       type: 'array',
       minRows: 1,

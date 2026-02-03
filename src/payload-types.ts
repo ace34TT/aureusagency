@@ -828,6 +828,37 @@ export interface MarqueeBlock {
  * via the `definition` "ServicesBlock".
  */
 export interface ServicesBlock {
+  tagline?: string | null;
+  richHeadline?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  richDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   services?:
     | {
         title: string;
@@ -845,6 +876,37 @@ export interface ServicesBlock {
  * via the `definition` "WorkShowcaseBlock".
  */
 export interface WorkShowcaseBlock {
+  tagline?: string | null;
+  richHeadline?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  richDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   projects?:
     | {
         name: string;
@@ -863,6 +925,22 @@ export interface WorkShowcaseBlock {
  * via the `definition` "ProcessBlock".
  */
 export interface ProcessBlock {
+  tagline?: string | null;
+  richHeadline?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   steps?:
     | {
         title: string;
@@ -880,6 +958,22 @@ export interface ProcessBlock {
  * via the `definition` "TestimonialsBlock".
  */
 export interface TestimonialsBlock {
+  tagline?: string | null;
+  richHeadline?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   testimonials?:
     | {
         quote: string;
@@ -1326,6 +1420,9 @@ export interface MarqueeBlockSelect<T extends boolean = true> {
  * via the `definition` "ServicesBlock_select".
  */
 export interface ServicesBlockSelect<T extends boolean = true> {
+  tagline?: T;
+  richHeadline?: T;
+  richDescription?: T;
   services?:
     | T
     | {
@@ -1342,6 +1439,9 @@ export interface ServicesBlockSelect<T extends boolean = true> {
  * via the `definition` "WorkShowcaseBlock_select".
  */
 export interface WorkShowcaseBlockSelect<T extends boolean = true> {
+  tagline?: T;
+  richHeadline?: T;
+  richDescription?: T;
   projects?:
     | T
     | {
@@ -1359,6 +1459,8 @@ export interface WorkShowcaseBlockSelect<T extends boolean = true> {
  * via the `definition` "ProcessBlock_select".
  */
 export interface ProcessBlockSelect<T extends boolean = true> {
+  tagline?: T;
+  richHeadline?: T;
   steps?:
     | T
     | {
@@ -1375,6 +1477,8 @@ export interface ProcessBlockSelect<T extends boolean = true> {
  * via the `definition` "TestimonialsBlock_select".
  */
 export interface TestimonialsBlockSelect<T extends boolean = true> {
+  tagline?: T;
+  richHeadline?: T;
   testimonials?:
     | T
     | {

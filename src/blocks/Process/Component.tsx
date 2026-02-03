@@ -2,8 +2,11 @@ import React from 'react'
 import Image from 'next/image'
 import { Layout, Paintbrush, Rocket, Search } from 'lucide-react'
 import { theme } from '@/utilities/theme'
+import RichText from '@/components/RichText'
 
 type ProcessProps = {
+  tagline?: string | null
+  richHeadline?: any
   steps?: {
     title: string
     copy: string
@@ -19,7 +22,7 @@ const icons = {
   rocket: Rocket,
 }
 
-const Process = ({ steps }: ProcessProps) => {
+const Process = ({ tagline, richHeadline, steps }: ProcessProps) => {
   const colors = ['bg-blue-50', 'bg-purple-50', 'bg-pink-50', 'bg-amber-50']
   const textColors = ['text-[#6C63FF]', 'text-purple-500', 'text-pink-500', 'text-amber-500']
 
@@ -34,10 +37,12 @@ const Process = ({ steps }: ProcessProps) => {
         <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
           {/* CÔTÉ GAUCHE : IMAGE & VISUEL */}
           <div>
-            <p className={`text-xs uppercase tracking-[0.35em] ${theme.inkSoft}`}>Notre Méthode</p>
-            <h2 className="mt-4 text-4xl font-(--font-marcellus) text-[#0F172A] leading-tight">
-              Un parcours simple, des décisions rapides.
-            </h2>
+            <p className={`text-xs uppercase tracking-[0.35em] ${theme.inkSoft}`}>
+              {tagline || 'Notre Méthode'}
+            </p>
+            <div className="mt-4 text-4xl font-(--font-marcellus) text-[#0F172A] leading-tight">
+              {richHeadline && <RichText data={richHeadline} enableGutter={false} />}
+            </div>
 
             <div className="mt-12 space-y-8">
               {(steps || []).map((step, index) => {
@@ -64,9 +69,9 @@ const Process = ({ steps }: ProcessProps) => {
                       <h3 className="text-xl font-semibold text-[#0F172A] flex items-center gap-3">
                         {step.title}
                       </h3>
-                      <p className={`mt-3 text-sm leading-relaxed ${theme.inkMuted}`}>
+                      <div className={`mt-3 text-sm leading-relaxed ${theme.inkMuted}`}>
                         {step.copy}
-                      </p>
+                      </div>
                     </div>
                   </div>
                 )

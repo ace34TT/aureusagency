@@ -1,16 +1,20 @@
 'use client'
+
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
 import { Quote } from 'lucide-react'
 import { theme } from '@/utilities/theme'
 import type { Media } from '@/payload-types'
+import RichText from '@/components/RichText'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/effect-fade'
 
 type TestimonialsProps = {
+  tagline?: string | null
+  richHeadline?: any
   testimonials?: {
     quote: string
     authorName: string
@@ -20,7 +24,7 @@ type TestimonialsProps = {
   }[]
 }
 
-export const Testimonials = ({ testimonials }: TestimonialsProps) => {
+export const Testimonials = ({ tagline, richHeadline, testimonials }: TestimonialsProps) => {
   return (
     <section className="relative px-6 py-24 overflow-hidden bg-white">
       {/* Masque de transition pour éviter le rude cut et fondre les bulles */}
@@ -42,12 +46,14 @@ export const Testimonials = ({ testimonials }: TestimonialsProps) => {
       <div className="relative mx-auto container z-30">
         <div className="text-center max-w-3xl mx-auto">
           {/* Badge identique au Process */}
-          <p className={`text-xs uppercase tracking-[0.35em] ${theme.inkSoft}`}>Témoignages</p>
+          <p className={`text-xs uppercase tracking-[0.35em] ${theme.inkSoft}`}>
+            {tagline || 'Témoignages'}
+          </p>
 
           {/* Titre identique au Process (Marcellus) */}
-          <h2 className="mt-4 text-4xl font-(--font-marcellus) text-[#0F172A] leading-tight md:text-5xl">
-            Ils nous font confiance.
-          </h2>
+          <div className="mt-4 text-4xl font-(--font-marcellus) text-[#0F172A] leading-tight md:text-5xl">
+            {richHeadline && <RichText data={richHeadline} enableGutter={false} />}
+          </div>
         </div>
 
         <div className="mt-16 max-w-4xl mx-auto">
@@ -73,9 +79,9 @@ export const Testimonials = ({ testimonials }: TestimonialsProps) => {
                   </div>
 
                   {/* Contenu - Taille cohérente avec le Hero/Process */}
-                  <p className="font-(--font-marcellus) text-2xl md:text-4xl leading-tight text-[#0F172A]">
-                    &quot;{t.quote}&quot;
-                  </p>
+                  <div className="font-(--font-marcellus) text-2xl md:text-4xl leading-tight text-[#0F172A]">
+                    {t.quote}
+                  </div>
 
                   <div className="mt-10">
                     <h4 className="text-lg font-semibold text-[#0F172A] tracking-tight">

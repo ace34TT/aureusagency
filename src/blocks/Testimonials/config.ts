@@ -5,6 +5,15 @@ export const Testimonials: Block = {
   interfaceName: 'TestimonialsBlock',
   fields: [
     {
+      name: 'tagline',
+      type: 'text',
+    },
+    {
+      name: 'richHeadline',
+      type: 'richText',
+      label: 'Headline',
+    },
+    {
       name: 'testimonials',
       type: 'array',
       minRows: 1,

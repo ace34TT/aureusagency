@@ -1,31 +1,36 @@
 import { theme } from '@/utilities/theme'
 import type { Media } from '@/payload-types'
 import { Media as MediaComponent } from '@/components/Media'
+import RichText from '@/components/RichText'
 
 type ServiceProps = {
+  tagline?: string | null
+  richHeadline?: any
+  richDescription?: any
   services?: {
     title: string
-    description: string
+    richDescription: any
     icon: string | Media
     id?: string
   }[]
 }
 
-const Services = ({ services }: ServiceProps) => {
+const Services = ({ tagline, richHeadline, richDescription, services }: ServiceProps) => {
   return (
     <section className={`relative px-6 py-24 `}>
       <div className="relative mx-auto container">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <p className={`text-xs uppercase tracking-[0.35em] ${theme.inkSoft}`}>Services</p>
-
-            <h2 className="mt-4 text-3xl font-(--font-marcellus) text-[#0F172A] md:text-4xl">
-              Un site vitrine qui joue comme un commercial.
-            </h2>
-            <p className={`mt-4 text-base ${theme.inkMuted}`}>
-              Nous combinons branding, UX et conversion pour rendre votre offre simple a comprendre
-              et facile a choisir.
+            <p className={`text-xs uppercase tracking-[0.35em] ${theme.inkSoft}`}>
+              {tagline || 'Services'}
             </p>
+
+            <div className="mt-4 text-3xl font-(--font-marcellus) text-[#0F172A] md:text-4xl">
+              {richHeadline && <RichText data={richHeadline} enableGutter={false} />}
+            </div>
+            <div className={`mt-4 text-base ${theme.inkMuted}`}>
+              {richDescription && <RichText data={richDescription} enableGutter={false} />}
+            </div>
 
             <div className="mt-8 flex flex-col gap-4 text-sm uppercase tracking-[0.3em] text-[#0F172A]/60">
               <span>Design sur mesure</span>
@@ -49,7 +54,11 @@ const Services = ({ services }: ServiceProps) => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-[#0F172A]">{item.title}</h3>
-                  <p className={`mt-2 text-sm ${theme.inkMuted}`}>{item.description}</p>
+                  <div className={`mt-2 text-sm ${theme.inkMuted}`}>
+                    {item.richDescription && (
+                      <RichText data={item.richDescription} enableGutter={false} />
+                    )}
+                  </div>
                 </div>
               </div>
             ))}

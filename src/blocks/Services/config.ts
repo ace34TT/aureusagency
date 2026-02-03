@@ -5,6 +5,20 @@ export const Services: Block = {
   interfaceName: 'ServicesBlock',
   fields: [
     {
+      name: 'tagline',
+      type: 'text',
+    },
+    {
+      name: 'richHeadline', // Renamed from headline
+      type: 'richText',
+      label: 'Headline',
+    },
+    {
+      name: 'richDescription', // Renamed from description
+      type: 'richText',
+      label: 'Description',
+    },
+    {
       name: 'services',
       type: 'array',
       minRows: 1,
