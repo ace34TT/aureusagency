@@ -12,8 +12,8 @@ import { LivePreviewListener } from '@/components/LivePreviewListener'
 import Process from '@/blocks/Process/Component'
 import WorkShowcase from '@/blocks/WorkShowCase/Component'
 import Services from '@/blocks/Services/Component'
-import { TechnoMarquee } from '@/blocks/Marquee/Component'
 import { Testimonials } from '@/blocks/Testimonials/Component'
+import { RenderBlocks } from '@/blocks/RenderBlocks'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -68,14 +68,14 @@ export default async function Page({ params: paramsPromise }: Args) {
       <PayloadRedirects disableNotFound url={url} />
       {draft && <LivePreviewListener />}
       <RenderHero {...hero} />
-      <TechnoMarquee />
+      <RenderBlocks blocks={layout} />
+      {/*<TechnoMarquee />*/}
       <Services />
       <WorkShowcase />
       <Process />
       <Testimonials />
-      <TechnoMarquee />
+      {/*<TechnoMarquee />*/}
       {/*<Faq />*/}
-      {/*<RenderBlocks blocks={layout} />*/}
     </article>
   )
 }

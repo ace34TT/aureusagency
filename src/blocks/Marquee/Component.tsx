@@ -1,8 +1,8 @@
 'use client'
 import React from 'react'
-import Marquee from 'react-fast-marquee'
+import FastMarquee from 'react-fast-marquee'
 
-export const TechnoMarquee = () => {
+export const Marquee = () => {
   const expertise = [
     { name: 'Next.js 15' },
     { name: 'Payload CMS' },
@@ -24,7 +24,7 @@ export const TechnoMarquee = () => {
             'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
         }}
       >
-        <Marquee gradient={false} speed={50} pauseOnHover={true} play={true}>
+        <FastMarquee gradient={false} speed={50} pauseOnHover={true} play={true}>
           {[...expertise, ...expertise].map((item, index) => (
             <div key={index} className="mx-10 flex items-center py-4">
               {/* Ajout de py-4 ici */}
@@ -35,7 +35,7 @@ export const TechnoMarquee = () => {
               <span className="ml-20 text-3xl text-gray-200 font-light">/</span>
             </div>
           ))}
-        </Marquee>
+        </FastMarquee>
       </div>
     </section>
   )
