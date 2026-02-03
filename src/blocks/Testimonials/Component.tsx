@@ -4,33 +4,23 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
 import { Quote } from 'lucide-react'
 import { theme } from '@/utilities/theme'
+import type { Media } from '@/payload-types'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/effect-fade'
 
-const testimonials = [
-  {
-    name: 'Jean Dupont',
-    role: 'CEO @ TechFlow',
-    content:
-      "L'expertise technique de Tafinasoa a permis de transformer notre vision en une plateforme web ultra-performante. Un vrai professionnel.",
-  },
-  {
-    name: 'Sarah Rakoto',
-    role: 'Fondatrice @ Studio Mada',
-    content:
-      'Une collaboration fluide et un résultat qui dépasse nos attentes. Le passage à Next.js a boosté notre SEO de manière impressionnante.',
-  },
-  {
-    name: 'Marc Lefebvre',
-    role: 'Product Manager',
-    content:
-      'Réactif, compétent et force de proposition. Il ne se contente pas de coder, il comprend les enjeux business.',
-  },
-]
+type TestimonialsProps = {
+  testimonials?: {
+    quote: string
+    authorName: string
+    authorRole: string
+    authorImage?: string | Media
+    id?: string
+  }[]
+}
 
-export const Testimonials = () => {
+export const Testimonials = ({ testimonials }: TestimonialsProps) => {
   return (
     <section className="relative px-6 py-24 overflow-hidden bg-white">
       {/* Masque de transition pour éviter le rude cut et fondre les bulles */}
@@ -74,8 +64,8 @@ export const Testimonials = () => {
             }}
             className="testimonial-swiper pb-20!"
           >
-            {testimonials.map((t, index) => (
-              <SwiperSlide key={index}>
+            {(testimonials || []).map((t, index) => (
+              <SwiperSlide key={t.id || index}>
                 <div className="flex flex-col items-center text-center cursor-grab">
                   {/* Icône Quote stylisée comme tes étapes Process */}
                   <div className="mb-10 flex h-16 w-16 items-center justify-center rounded-2xl text-primary/40">
@@ -84,15 +74,15 @@ export const Testimonials = () => {
 
                   {/* Contenu - Taille cohérente avec le Hero/Process */}
                   <p className="font-(--font-marcellus) text-2xl md:text-4xl leading-tight text-[#0F172A]">
-                    "{t.content}"
+                    &quot;{t.quote}&quot;
                   </p>
 
                   <div className="mt-10">
                     <h4 className="text-lg font-semibold text-[#0F172A] tracking-tight">
-                      {t.name}
+                      {t.authorName}
                     </h4>
                     <p className={`mt-2 text-xs uppercase tracking-[0.2em] font-bold text-primary`}>
-                      {t.role}
+                      {t.authorRole}
                     </p>
                   </div>
                 </div>

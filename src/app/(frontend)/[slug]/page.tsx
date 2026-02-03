@@ -9,10 +9,6 @@ import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
-import Process from '@/blocks/Process/Component'
-import WorkShowcase from '@/blocks/WorkShowCase/Component'
-import Services from '@/blocks/Services/Component'
-import { Testimonials } from '@/blocks/Testimonials/Component'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 
 export async function generateStaticParams() {
@@ -69,10 +65,10 @@ export default async function Page({ params: paramsPromise }: Args) {
       {draft && <LivePreviewListener />}
       <RenderHero {...hero} />
       <RenderBlocks blocks={layout} />
-      <Services />
-      <WorkShowcase />
-      <Process />
-      <Testimonials />
+      {/*<Services />*/}
+      {/*<WorkShowcase />*/}
+      {/*<Process />*/}
+      {/*<Testimonials />*/}
     </article>
   )
 }

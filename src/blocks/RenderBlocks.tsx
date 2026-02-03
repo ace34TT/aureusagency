@@ -8,6 +8,10 @@ import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { Marquee } from '@/blocks/Marquee/Component'
+import Services from '@/blocks/Services/Component'
+import WorkShowcase from '@/blocks/WorkShowCase/Component'
+import Process from '@/blocks/Process/Component'
+import Testimonials from '@/blocks/Testimonials/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -16,6 +20,10 @@ const blockComponents = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   marquee: Marquee,
+  services: Services,
+  workShowcase: WorkShowcase,
+  process: Process,
+  testimonials: Testimonials,
 }
 
 export const RenderBlocks: React.FC<{

@@ -8,6 +8,10 @@ import { CallToAction } from '@/blocks/CallToAction/config'
 import { Content } from '@/blocks/Content/config'
 import { FormBlock } from '@/blocks/Form/config'
 import { MediaBlock } from '@/blocks/MediaBlock/config'
+import { Services } from '@/blocks/Services/config'
+import { WorkShowcase } from '@/blocks/WorkShowCase/config'
+import { Process } from '@/blocks/Process/config'
+import { Testimonials } from '@/blocks/Testimonials/config'
 import { hero } from '@/heros/config'
 import { populatePublishedAt } from '@/hooks/populatePublishedAt'
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
@@ -73,7 +77,18 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, MarqueeBlock],
+              blocks: [
+                CallToAction,
+                Content,
+                MediaBlock,
+                Archive,
+                FormBlock,
+                MarqueeBlock,
+                Services,
+                WorkShowcase,
+                Process,
+                Testimonials,
+              ],
               required: true,
               admin: {
                 initCollapsed: true,

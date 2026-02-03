@@ -1,6 +1,17 @@
 import { theme } from '@/utilities/theme'
+import type { Media } from '@/payload-types'
+import { Media as MediaComponent } from '@/components/Media'
 
-const Services = () => {
+type ServiceProps = {
+  services?: {
+    title: string
+    description: string
+    icon: string | Media
+    id?: string
+  }[]
+}
+
+const Services = ({ services }: ServiceProps) => {
   return (
     <section className={`relative px-6 py-24 `}>
       <div className="relative mx-auto container">
@@ -25,30 +36,20 @@ const Services = () => {
           </div>
 
           <div className="grid gap-5">
-            {[
-              {
-                title: 'Landing page persuasive',
-                copy: 'Structuree pour convertir avec un chemin clair vers votre email.',
-              },
-              {
-                title: 'Pages offre & preuves',
-                copy: 'Des modules modulaires pour afficher vos cas, chiffres et garanties.',
-              },
-              {
-                title: 'Integration email',
-                copy: 'Formulaire simple, CTA visibles, suivi rapide pour relancer vos prospects.',
-              },
-            ].map((item, index) => (
+            {(services || []).map((item, index) => (
               <div
-                key={item.title}
+                key={item.id || index}
                 className="flex items-start gap-6 rounded-3xl border border-[#0F172A]/10 bg-white/80 p-6 shadow-[0_16px_50px_rgba(15,23,42,0.08)]"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/75 text-sm font-semibold text-[#F5F2EB]">
-                  0{index + 1}
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/75 text-sm font-semibold text-[#F5F2EB] overflow-hidden">
+                  {typeof item.icon === 'object' && (
+                    <MediaComponent resource={item.icon} className="h-full w-full object-cover" />
+                  )}
+                  {/* Fallback or index if no icon - but icon is required in config */}
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-[#0F172A]">{item.title}</h3>
-                  <p className={`mt-2 text-sm ${theme.inkMuted}`}>{item.copy}</p>
+                  <p className={`mt-2 text-sm ${theme.inkMuted}`}>{item.description}</p>
                 </div>
               </div>
             ))}
