@@ -10,6 +10,7 @@ import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
+import { RevealAnimation } from '@/components/RevealAnimation'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -63,7 +64,9 @@ export default async function Page({ params: paramsPromise }: Args) {
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
       {draft && <LivePreviewListener />}
-      <RenderHero {...hero} />
+      <RevealAnimation>
+        <RenderHero {...hero} />
+      </RevealAnimation>
       <RenderBlocks blocks={layout} />
     </article>
   )

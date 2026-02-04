@@ -12,6 +12,7 @@ import Services from '@/blocks/Services/Component'
 import WorkShowcase from '@/blocks/WorkShowCase/Component'
 import Process from '@/blocks/Process/Component'
 import Testimonials from '@/blocks/Testimonials/Component'
+import { RevealAnimation } from '@/components/RevealAnimation'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -44,9 +45,9 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div className="" key={index}>
+                <RevealAnimation key={index}>
                   <Block {...block} disableInnerContainer />
-                </div>
+                </RevealAnimation>
               )
             }
           }
