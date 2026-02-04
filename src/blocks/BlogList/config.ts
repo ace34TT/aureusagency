@@ -41,10 +41,29 @@ export const BlogList: Block = {
       label: 'Description',
     },
     {
+      name: 'mode',
+      type: 'select',
+      defaultValue: 'latest',
+      options: [
+        {
+          label: 'Latest Posts',
+          value: 'latest',
+        },
+        {
+          label: 'All Posts (Paginated)',
+          value: 'all',
+        },
+      ],
+      label: 'View Mode',
+    },
+    {
       name: 'limit',
       type: 'number',
       defaultValue: 6,
-      label: 'Number of posts',
+      label: 'Limits / Page Size',
+      admin: {
+        description: 'Number of posts to show (Latest mode) or per page (All mode)',
+      },
     },
   ],
   labels: {

@@ -38,11 +38,18 @@ type Args = {
   params: Promise<{
     slug?: string
   }>
+  searchParams: Promise<{
+    [key: string]: string | string[] | undefined
+  }>
 }
 
-export default async function Page({ params: paramsPromise }: Args) {
+export default async function Page({
+  params: paramsPromise,
+  searchParams: searchParamsPromise,
+}: Args) {
   const { isEnabled: draft } = await draftMode()
   const { slug = 'home' } = await paramsPromise
+  const searchParams = await searchParamsPromise
   // Decode to support slugs with special characters
   const decodedSlug = decodeURIComponent(slug)
   const url = '/' + decodedSlug
@@ -65,7 +72,7 @@ export default async function Page({ params: paramsPromise }: Args) {
       <RevealAnimation>
         <RenderHero {...hero} />
       </RevealAnimation>
-      <RenderBlocks blocks={layout} />
+      <RenderBlocks blocks={layout} searchParams={searchParams} />
     </article>
   )
 }

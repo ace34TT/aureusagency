@@ -31,8 +31,9 @@ const blockComponents = {
 
 export const RenderBlocks: React.FC<{
   blocks: Page['layout'][0][]
+  searchParams?: { [key: string]: string | string[] | undefined }
 }> = (props) => {
-  const { blocks } = props
+  const { blocks, searchParams } = props
 
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
 
@@ -48,7 +49,7 @@ export const RenderBlocks: React.FC<{
             if (Block) {
               return (
                 <RevealAnimation key={index}>
-                  <Block {...block} disableInnerContainer />
+                  <Block {...block} searchParams={searchParams} disableInnerContainer />
                 </RevealAnimation>
               )
             }

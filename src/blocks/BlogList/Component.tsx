@@ -6,16 +6,26 @@ import RichText from '@/components/RichText'
 import { Media } from '@/components/Media'
 import Link from 'next/link'
 import type { BlogListBlock } from '@/payload-types'
+import { BlogPagination } from './BlogPagination'
 
-export const BlogList = async (props: BlogListBlock) => {
-  const { title, description, limit = 6 } = props
+export const BlogList = async (
+  props: BlogListBlock & {
+    searchParams?: { [key: string]: string | string[] | undefined }
+  },
+) => {
+  const { title, description, limit = 6, mode = 'latest', searchParams } = props
 
   const payload = await getPayload({ config: configPromise })
+
+  const page =
+    mode === 'all' && searchParams?.page ? Number.parseInt(searchParams.page as string, 10) : 1
 
   const posts = await payload.find({
     collection: 'posts',
     depth: 1,
-    limit,
+    limit: limit || 6,
+    page,
+    pagination: mode === 'all',
     sort: '-publishedAt',
   })
 
@@ -51,7 +61,7 @@ export const BlogList = async (props: BlogListBlock) => {
               <Link href={href} key={post.id} className="group block h-full">
                 <article className="flex flex-col h-full bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                   {/* Image */}
-                  <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                  <div className="relative aspect-16/10 overflow-hidden bg-slate-100">
                     {meta?.image && typeof meta.image !== 'string' && (
                       <Media
                         resource={meta.image}
@@ -63,7 +73,6 @@ export const BlogList = async (props: BlogListBlock) => {
 
                   {/* Content */}
                   <div className="flex flex-col flex-1 p-8">
-                    {/* Date & Category (if any) */}
                     {/* Date & Tags */}
                     <div className="flex flex-wrap items-center gap-3 text-xs font-medium text-slate-500 mb-4 uppercase tracking-wider">
                       {publishedAt && (
@@ -95,7 +104,7 @@ export const BlogList = async (props: BlogListBlock) => {
                       )}
                     </div>
 
-                    <h3 className="text-xl font-bold text-[#0F172A] mb-3 leading-snug group-hover:text-primary transition-colors font-(--font-marcellus)">
+                    <h3 className="text-xl font-bold text-[#0F172A] mb-3 leading-snug group-hover:text-primary transition-colors">
                       {title}
                     </h3>
 
@@ -107,7 +116,7 @@ export const BlogList = async (props: BlogListBlock) => {
                       <div className="text-xs font-semibold text-[#0F172A] uppercase tracking-wide">
                         Lire l&apos;article
                       </div>
-                      <div className="w-8 h-[1px] bg-primary/50 group-hover:w-12 transition-all" />
+                      <div className="w-8 h-px bg-primary/50 group-hover:w-12 transition-all" />
                     </div>
                   </div>
                 </article>
@@ -115,6 +124,10 @@ export const BlogList = async (props: BlogListBlock) => {
             )
           })}
         </div>
+
+        {mode === 'all' && posts.totalPages > 1 && (
+          <BlogPagination page={page} totalPages={posts.totalPages} />
+        )}
       </div>
     </section>
   )

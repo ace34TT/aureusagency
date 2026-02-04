@@ -1040,6 +1040,10 @@ export interface BlogListBlock {
     };
     [k: string]: unknown;
   } | null;
+  mode?: ('latest' | 'all') | null;
+  /**
+   * Number of posts to show (Latest mode) or per page (All mode)
+   */
   limit?: number | null;
   id?: string | null;
   blockName?: string | null;
@@ -1560,6 +1564,7 @@ export interface TestimonialsBlockSelect<T extends boolean = true> {
 export interface BlogListBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
+  mode?: T;
   limit?: T;
   id?: T;
   blockName?: T;
