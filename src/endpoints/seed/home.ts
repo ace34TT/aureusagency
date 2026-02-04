@@ -71,7 +71,27 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
         tagline: 'Nos Services',
         richHeadline: {
           root: {
-            children: [{ type: 'text', version: 1, text: 'Expertise & Innovation' }],
+            children: [
+              {
+                type: 'heading',
+                children: [
+                  {
+                    type: 'text',
+                    detail: 0,
+                    format: 0,
+                    mode: 'normal',
+                    style: '',
+                    text: 'Expertise & Innovation',
+                    version: 1,
+                  },
+                ],
+                direction: 'ltr',
+                format: '',
+                indent: 0,
+                tag: 'h2',
+                version: 1,
+              },
+            ],
             direction: 'ltr',
             format: '',
             indent: 0,
@@ -103,7 +123,27 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
         tagline: 'Nos Réalisations',
         richHeadline: {
           root: {
-            children: [{ type: 'text', version: 1, text: 'Projets Récents' }],
+            children: [
+              {
+                type: 'heading',
+                children: [
+                  {
+                    type: 'text',
+                    detail: 0,
+                    format: 0,
+                    mode: 'normal',
+                    style: '',
+                    text: 'Projets Récents',
+                    version: 1,
+                  },
+                ],
+                direction: 'ltr',
+                format: '',
+                indent: 0,
+                tag: 'h2',
+                version: 1,
+              },
+            ],
             direction: 'ltr',
             format: '',
             indent: 0,
@@ -115,9 +155,22 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
           root: {
             children: [
               {
-                type: 'text',
+                type: 'paragraph',
+                children: [
+                  {
+                    type: 'text',
+                    detail: 0,
+                    format: 0,
+                    mode: 'normal',
+                    style: '',
+                    text: 'Découvrez comment nous aidons nos clients à atteindre leurs objectifs.',
+                    version: 1,
+                  },
+                ],
+                direction: 'ltr',
+                format: '',
+                indent: 0,
                 version: 1,
-                text: 'Découvrez comment nous aidons nos clients à atteindre leurs objectifs.',
               },
             ],
             direction: 'ltr',
@@ -157,7 +210,27 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
         tagline: 'Méthodologie',
         richHeadline: {
           root: {
-            children: [{ type: 'text', version: 1, text: 'Comment nous travaillons' }],
+            children: [
+              {
+                type: 'heading',
+                children: [
+                  {
+                    type: 'text',
+                    detail: 0,
+                    format: 0,
+                    mode: 'normal',
+                    style: '',
+                    text: 'Comment nous travaillons',
+                    version: 1,
+                  },
+                ],
+                direction: 'ltr',
+                format: '',
+                indent: 0,
+                tag: 'h2',
+                version: 1,
+              },
+            ],
             direction: 'ltr',
             format: '',
             indent: 0,
@@ -194,7 +267,27 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
         tagline: 'Confiance',
         richHeadline: {
           root: {
-            children: [{ type: 'text', version: 1, text: 'Ils nous font confiance' }],
+            children: [
+              {
+                type: 'heading',
+                children: [
+                  {
+                    type: 'text',
+                    detail: 0,
+                    format: 0,
+                    mode: 'normal',
+                    style: '',
+                    text: 'Ils nous font confiance',
+                    version: 1,
+                  },
+                ],
+                direction: 'ltr',
+                format: '',
+                indent: 0,
+                tag: 'h2',
+                version: 1,
+              },
+            ],
             direction: 'ltr',
             format: '',
             indent: 0,
