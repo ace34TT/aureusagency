@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
+import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules'
 import { Quote } from 'lucide-react'
 import { theme } from '@/utilities/theme'
 import type { Media } from '@/payload-types'
@@ -10,6 +10,7 @@ import RichText from '@/components/RichText'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
+import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 
 type TestimonialsProps = {
@@ -56,9 +57,9 @@ export const Testimonials = ({ tagline, richHeadline, testimonials }: Testimonia
           </div>
         </div>
 
-        <div className="mt-16 max-w-4xl mx-auto">
+        <div className="mt-16 max-w-5xl mx-auto bg-primary/5 rounded-[40px] px-6 py-12 md:p-16 border border-primary/10 relative">
           <Swiper
-            modules={[Autoplay, Pagination, EffectFade]}
+            modules={[Autoplay, Pagination, EffectFade, Navigation]}
             effect="fade"
             fadeEffect={{ crossFade: true }}
             spaceBetween={30}
@@ -68,22 +69,23 @@ export const Testimonials = ({ tagline, richHeadline, testimonials }: Testimonia
               clickable: true,
               dynamicBullets: true,
             }}
-            className="testimonial-swiper pb-20!"
+            navigation={true}
+            className="testimonial-swiper !pb-12 !px-4"
           >
             {(testimonials || []).map((t, index) => (
               <SwiperSlide key={t.id || index}>
                 <div className="flex flex-col items-center text-center cursor-grab">
-                  {/* Icône Quote stylisée comme tes étapes Process */}
-                  <div className="mb-10 flex h-16 w-16 items-center justify-center rounded-2xl text-primary/40">
-                    <Quote size={32} />
+                  {/* Icône Quote stylisée */}
+                  <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-primary shadow-sm">
+                    <Quote size={28} />
                   </div>
 
-                  {/* Contenu - Taille cohérente avec le Hero/Process */}
-                  <div className="font-sans italic text-xl md:text-3xl leading-relaxed text-[#0F172A] max-w-4xl mx-auto">
+                  {/* Contenu */}
+                  <div className="font-sans italic text-xl md:text-2xl leading-relaxed text-[#0F172A] max-w-3xl mx-auto">
                     &quot;{t.quote}&quot;
                   </div>
 
-                  <div className="mt-10">
+                  <div className="mt-8">
                     <h4 className="text-lg font-semibold text-[#0F172A] tracking-tight">
                       {t.authorName}
                     </h4>
@@ -98,7 +100,7 @@ export const Testimonials = ({ tagline, richHeadline, testimonials }: Testimonia
         </div>
       </div>
 
-      {/* Style pour la pagination customisée aux couleurs du thème */}
+      {/* Style pour la pagination et la navigation customisée */}
       <style jsx global>{`
         .testimonial-swiper .swiper-pagination-bullet-active {
           background: #6c63ff !important;
@@ -108,6 +110,28 @@ export const Testimonials = ({ tagline, richHeadline, testimonials }: Testimonia
 
         .testimonial-swiper .swiper-pagination-bullet {
           background: #0f172a;
+        }
+
+        /* Navigation Arrows Styling */
+        .testimonial-swiper .swiper-button-next,
+        .testimonial-swiper .swiper-button-prev {
+          color: #6c63ff !important; /* Primary color */
+          transform: scale(0.6);
+          font-weight: bold;
+          transition: all 0.3s ease;
+        }
+
+        .testimonial-swiper .swiper-button-next:hover,
+        .testimonial-swiper .swiper-button-prev:hover {
+          transform: scale(0.8);
+          color: #4a43cb !important;
+        }
+
+        @media (max-width: 640px) {
+          .testimonial-swiper .swiper-button-next,
+          .testimonial-swiper .swiper-button-prev {
+            display: none; /* Hide on small mobile to prevent overlap */
+          }
         }
       `}</style>
     </section>

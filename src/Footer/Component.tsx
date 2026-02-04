@@ -58,7 +58,6 @@ import { getMediaUrl } from '@/utilities/getMediaUrl'
 import Image from 'next/image'
 import { HeaderNavItems, SocialLinks } from '@/types'
 import { NewsletterForm } from '@/components/Form/NewsletterForm'
-import { theme } from '@/utilities/theme'
 
 export async function Footer() {
   const footerData: Footer = (await getCachedGlobal('footer', 1)()) as Footer
@@ -144,7 +143,7 @@ export async function Footer() {
             href={href}
             target={link.newTab ? '_blank' : undefined}
             rel={link.newTab ? 'noopener noreferrer' : undefined}
-            className="hover:text-white transition-colors text-slate-400"
+            className="hover:text-primary transition-colors text-slate-600"
           >
             {link.label}
           </Link>
@@ -163,7 +162,7 @@ export async function Footer() {
             href={link.url}
             target={'_blank'}
             rel={'noopener noreferrer'}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-700 text-slate-200 transition hover:border-slate-500 hover:text-white"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 text-slate-400 transition hover:border-primary hover:text-primary"
             aria-label={link.url}
           >
             {icon}
@@ -173,64 +172,62 @@ export async function Footer() {
     })
 
   return (
-    <footer className="relative bg-[#0F172A] text-white py-32 px-6 overflow-hidden">
-      {/* Cercles en arrière-plan (Coherents avec Process et Hero) */}
+    <footer className="relative bg-white text-[#0F172A] py-16 px-6 overflow-hidden">
+      {/* Cercles en arrière-plan (Plus subtils pour le thème clair) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-        <div className="absolute top-[30%] -left-[10%] h-125 w-125 rounded-full bg-purple-900/20 blur-[120px]" />
-        <div className="absolute bottom-[10%] -right-[5%] h-125 w-125 rounded-full bg-blue-900/20 blur-[120px]" />
+        <div className="absolute top-[30%] -left-[10%] h-125 w-125 rounded-full bg-purple-100/50 blur-[100px]" />
+        <div className="absolute bottom-[10%] -right-[5%] h-125 w-125 rounded-full bg-blue-100/50 blur-[100px]" />
       </div>
 
-      <div className="relative z-20 container mx-auto">
-        <div className="grid lg:grid-cols-2 gap-20 items-start">
-          {/* Colonne Gauche : Appel à l'action + Formulaire */}
-          <div className="max-w-xl">
-            <h2 className="text-5xl md:text-6xl font-(--font-marcellus) leading-tight mb-8">
-              Prêt à scaler votre <span className="text-primary italic">business</span> ?
-            </h2>
-            <p className={`text-lg text-slate-400 mb-10 ${theme.inkMuted}`}>
-              Rejoignez les leaders qui utilisent nos stratégies pour croître exponentiellement.
-            </p>
-            <div className="max-w-md">
-              <NewsletterForm />
+      <div className="relative z-20 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row md:justify-between gap-12 mb-12">
+          <div className="flex flex-col lg:flex-row gap-10 items-start max-w-3xl">
+            {logo && (
+              <div className="relative w-48 h-48 shrink-0">
+                <Image
+                  src={logoUrl}
+                  alt={''}
+                  fill
+                  sizes="192px"
+                  className="object-contain object-top-left"
+                />
+              </div>
+            )}
+            <div className="space-y-6 pt-2 max-w-sm">
+              <div className="text-slate-600 text-base leading-relaxed">
+                Une agence dédiée à l&apos;excellence digitale et à la performance mesurable.
+              </div>
+              <div>
+                <h4 className="font-(--font-marcellus) text-lg mb-3 text-[#0F172A]">
+                  Restez informé
+                </h4>
+                <NewsletterForm />
+              </div>
             </div>
           </div>
 
-          {/* Colonne Droite : Navigation & Infos */}
-          <div className="grid sm:grid-cols-2 gap-12 lg:pl-12 pt-4">
-            <div className="space-y-8">
-              {logo && (
-                <div className="relative w-32 h-32 mb-4 opacity-90 grayscale hover:grayscale-0 transition-all duration-500">
-                  <Image src={logoUrl} alt={''} fill sizes="128px" className="object-contain" />
-                </div>
-              )}
-              <div className="text-slate-500 text-sm leading-relaxed">
-                Une agence dédiée à l&apos;excellence digitale et à la performance mesurable.
-              </div>
+          <div className="grid grid-cols-2 gap-12">
+            <div>
+              <h3 className="font-(--font-marcellus) text-lg mb-4 text-[#0F172A] uppercase tracking-wider">
+                Menu
+              </h3>
+              <ul className="space-y-3 text-base text-slate-600 font-medium">
+                {renderLinks(navItems || [])}
+              </ul>
             </div>
-
-            <div className="grid gap-10">
-              <div>
-                <h3 className="font-(--font-marcellus) text-lg mb-6 text-white uppercase tracking-wider">
-                  Menu
-                </h3>
-                <ul className="space-y-4 text-base">{renderLinks(navItems || [])}</ul>
-              </div>
-              <div>
-                <h3 className="font-(--font-marcellus) text-lg mb-6 text-white uppercase tracking-wider">
-                  Légal
-                </h3>
-                <ul className="space-y-4 text-sm">{renderLinks(legalLinks || [])}</ul>
-              </div>
+            <div>
+              <h3 className="font-(--font-marcellus) text-lg mb-4 text-[#0F172A] uppercase tracking-wider">
+                Légal
+              </h3>
+              <ul className="space-y-3 text-sm text-slate-500">{renderLinks(legalLinks || [])}</ul>
             </div>
           </div>
         </div>
 
-        {/* Bas de page : Copyright & Socials */}
-        <div className="mt-24 pt-10 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-slate-500 text-xs uppercase tracking-[0.2em] font-medium">
             © {new Date().getFullYear()} Aureus Agency. Tous droits réservés.
           </div>
-
           {socialLinks?.length ? (
             <ul className="flex gap-4">{renderSocialIcons(socialLinks)}</ul>
           ) : null}
