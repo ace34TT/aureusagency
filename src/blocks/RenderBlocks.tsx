@@ -12,6 +12,7 @@ import Services from '@/blocks/Services/Component'
 import WorkShowcase from '@/blocks/WorkShowCase/Component'
 import Process from '@/blocks/Process/Component'
 import Testimonials from '@/blocks/Testimonials/Component'
+import BlogList from '@/blocks/BlogList/Component'
 import { RevealAnimation } from '@/components/RevealAnimation'
 
 const blockComponents = {
@@ -25,6 +26,7 @@ const blockComponents = {
   workShowcase: WorkShowcase,
   process: Process,
   testimonials: Testimonials,
+  blogList: BlogList,
 }
 
 export const RenderBlocks: React.FC<{
