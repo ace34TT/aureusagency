@@ -120,8 +120,9 @@ export const BlogList = async (
                       {meta?.image && typeof meta.image !== 'string' && (
                         <Media
                           resource={meta.image}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          imgClassName="w-full h-full object-cover"
+                          pictureClassName="w-full h-full block"
+                          htmlElement={null}
                         />
                       )}
                     </div>

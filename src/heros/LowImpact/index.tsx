@@ -18,7 +18,7 @@ type LowImpactHeroType =
 
 export const LowImpactHero: React.FC<LowImpactHeroType> = ({ children, description, title }) => {
   return (
-    <div className="relative pt-32 pb-24 overflow-hidden bg-linear-to-b from-[#f9f2ff] to-white">
+    <div className="relative pt-32 pb-10 overflow-hidden bg-linear-to-b from-[#f9f2ff] to-white">
       {/* Background Atmosphere (Purple/Blue Blurs) */}
       <div
         className="absolute inset-0 pointer-events-none overflow-hidden z-0"
@@ -27,8 +27,8 @@ export const LowImpactHero: React.FC<LowImpactHeroType> = ({ children, descripti
           WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
         }}
       >
-        <div className="absolute top-[10%] left-1/2 -translate-x-[60%] h-[500px] w-[500px] rounded-full bg-purple-100/80 blur-[100px]" />
-        <div className="absolute top-[20%] left-1/2 translate-x-[10%] h-[400px] w-[400px] rounded-full bg-blue-100/60 blur-[100px]" />
+        <div className="absolute top-[10%] left-1/2 -translate-x-[60%] h-125 w-125 rounded-full bg-purple-100/80 blur-[100px]" />
+        <div className="absolute top-[20%] left-1/2 translate-x-[10%] h-100 w-100 rounded-full bg-blue-100/60 blur-[100px]" />
       </div>
 
       <div className="container mx-auto relative z-10 text-center">
