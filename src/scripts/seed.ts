@@ -11,7 +11,14 @@ const runSeed = async () => {
     const { default: config } = await import('../payload.config')
     const { getPayload } = await import('payload')
     const { seed } = await import('@/endpoints/seed')
+    const fs = await import('fs')
 
+    // Helper to log to file
+    const logToFile = (msg: string) => {
+      fs.appendFileSync('seed_debug.log', msg + '\n')
+    }
+
+    logToFile('Runner: Initialize Payload...')
     console.log('Initialize Payload...')
     const payload = await getPayload({ config })
 

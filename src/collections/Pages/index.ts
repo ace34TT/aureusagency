@@ -11,6 +11,7 @@ import { MediaBlock } from '@/blocks/MediaBlock/config'
 import { Services } from '@/blocks/Services/config'
 import { WorkShowcase } from '@/blocks/WorkShowCase/config'
 import { BlogList } from '@/blocks/BlogList/config'
+import { AchievementList } from '@/blocks/AchievementList/config'
 import { Process } from '@/blocks/Process/config'
 import { Testimonials } from '@/blocks/Testimonials/config'
 import { hero } from '@/heros/config'
@@ -90,6 +91,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 Process,
                 Testimonials,
                 BlogList,
+                AchievementList,
               ],
               required: true,
               admin: {

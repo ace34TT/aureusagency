@@ -1,6 +1,9 @@
 import type { CollectionSlug, GlobalSlug, Payload, PayloadRequest, File } from 'payload'
+import * as fs from 'fs'
+import path from 'path'
 
 import { aureusPosts, aureusTags } from './aureus'
+import { achievement1, achievement2 } from './achievements-data'
 import { contactForm as contactFormData } from './contact-form'
 import { contact as contactPageData } from './contact-page'
 import { home } from './home'
@@ -38,6 +41,7 @@ export const seed = async ({
   req: PayloadRequest
 }): Promise<void> => {
   payload.logger.info('Seeding database...')
+  fs.appendFileSync('seed_debug.log', 'Seed Function: Started\n')
 
   // we need to clear the media directory before seeding
   // as well as the collections and globals
@@ -85,20 +89,28 @@ export const seed = async ({
 
   payload.logger.info(`— Seeding media...`)
 
-  const [image1Buffer, image2Buffer, image3Buffer, hero1Buffer] = await Promise.all([
-    fetchFileByURL(
-      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-post1.webp',
-    ),
-    fetchFileByURL(
-      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-post2.webp',
-    ),
-    fetchFileByURL(
-      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-post3.webp',
-    ),
-    fetchFileByURL(
-      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-hero1.webp',
-    ),
-  ])
+  /*
+   * Use local files instead of fetching from GitHub to avoid network errors
+   */
+  // Depending on execution, standard path might be tricky.
+  // We assume running from root: src/endpoints/seed/...
+  const getLocalFile = (filename: string): File => {
+    const filePath = path.join(process.cwd(), 'src/endpoints/seed', filename)
+    const data = fs.readFileSync(filePath)
+    return {
+      name: filename,
+      data: data,
+      mimetype: 'image/webp',
+      size: data.byteLength,
+    }
+  }
+
+  const [image1Buffer, image2Buffer, image3Buffer, hero1Buffer] = [
+    getLocalFile('image-post1.webp'),
+    getLocalFile('image-post2.webp'),
+    getLocalFile('image-post3.webp'),
+    getLocalFile('image-hero1.webp'),
+  ]
 
   // Helper to create or find user
   let demoAuthorDoc = await payload
@@ -256,6 +268,68 @@ export const seed = async ({
     depth: 0,
     data: contactFormData,
   })
+
+  payload.logger.info(`— Seeding achievements...`)
+
+  const achievementsData = [achievement1, achievement2]
+
+  await Promise.all(
+    achievementsData.map(async (achievement) => {
+      try {
+        fs.appendFileSync('seed_debug.log', `Checking achievement: ${achievement.slug}\n`)
+        payload.logger.info(`Checking achievement: ${achievement.slug}`)
+        // Check if achievement exists
+        const existingAchievement = await payload.find({
+          collection: 'achievements',
+          where: { slug: { equals: achievement.slug } },
+        })
+
+        if (existingAchievement.totalDocs > 0) {
+          fs.appendFileSync('seed_debug.log', `Achievement already exists: ${achievement.slug}\n`)
+          payload.logger.info(`Achievement already exists: ${achievement.slug}`)
+          return
+        }
+
+        if (!imageHomeDoc || !imageHomeDoc.id) {
+          fs.appendFileSync(
+            'seed_debug.log',
+            'Hero Image (imageHomeDoc) is missing! Cannot create achievement.\n',
+          )
+          payload.logger.error('Hero Image (imageHomeDoc) is missing! Cannot create achievement.')
+          throw new Error('Hero Image missing')
+        }
+
+        fs.appendFileSync(
+          'seed_debug.log',
+          `Creating achievement: ${achievement.slug} with image ID: ${imageHomeDoc.id}\n`,
+        )
+        payload.logger.info(
+          `Creating achievement: ${achievement.slug} with image ID: ${imageHomeDoc.id}`,
+        )
+
+        const doc = await payload.create({
+          collection: 'achievements',
+          data: {
+            ...achievement,
+            heroImage: imageHomeDoc.id, // Reusing existing hero image
+            tags: [createdTags['Développement Web'], createdTags['Business']].filter(Boolean), // Assign some tags
+            _status: 'published',
+          } as any,
+          context: {
+            disableRevalidate: true,
+          },
+        })
+        fs.appendFileSync('seed_debug.log', `Successfully created achievement: ${doc.id}\n`)
+        payload.logger.info(`Successfully created achievement: ${doc.id}`)
+      } catch (err) {
+        fs.appendFileSync(
+          'seed_debug.log',
+          `Failed to seed achievement ${achievement.slug}: ${err}\n`,
+        )
+        payload.logger.error(`Failed to seed achievement ${achievement.slug}:`, err)
+      }
+    }),
+  )
 
   payload.logger.info(`— Seeding pages...`)
 
