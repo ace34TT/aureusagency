@@ -61,6 +61,62 @@ export const plugins: Plugin[] = [
     formOverrides: {
       fields: ({ defaultFields }) => {
         return defaultFields.map((field) => {
+          if ('name' in field && field.name === 'fields' && field.type === 'blocks') {
+            return {
+              ...field,
+              blocks: [
+                ...(field.blocks || []),
+                {
+                  slug: 'phone',
+                  labels: {
+                    singular: 'Phone',
+                    plural: 'Phones',
+                  },
+                  fields: [
+                    {
+                      name: 'name',
+                      type: 'text',
+                      label: 'Name (lowercase, no special characters)',
+                      required: true,
+                    },
+                    {
+                      name: 'label',
+                      type: 'text',
+                      label: 'Label',
+                      required: true,
+                    },
+                    {
+                      name: 'width',
+                      type: 'select',
+                      label: 'Field Width',
+                      options: [
+                        {
+                          label: '100%',
+                          value: '100',
+                        },
+                        {
+                          label: '50%',
+                          value: '50',
+                        },
+                      ],
+                      defaultValue: '100',
+                    },
+                    {
+                      name: 'required',
+                      type: 'checkbox',
+                      label: 'Required',
+                    },
+                    {
+                      name: 'defaultValue',
+                      type: 'text',
+                      label: 'Default Value',
+                    },
+                  ],
+                },
+              ],
+            }
+          }
+
           if ('name' in field && field.name === 'confirmationMessage') {
             return {
               ...field,

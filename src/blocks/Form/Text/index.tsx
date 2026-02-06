@@ -25,7 +25,13 @@ export const Text: React.FC<
           </span>
         )}
       </Label>
-      <Input defaultValue={defaultValue} id={name} type="text" {...register(name, { required })} />
+      <Input
+        defaultValue={defaultValue}
+        id={name}
+        type="text"
+        {...register(name, { required })}
+        className="rounded-full h-12 px-6 bg-slate-50 border-slate-200 focus:border-primary focus:ring-primary"
+      />
       {errors[name] && <Error name={name} />}
     </Width>
   )

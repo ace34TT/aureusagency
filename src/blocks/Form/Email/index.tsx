@@ -30,6 +30,7 @@ export const Email: React.FC<
         id={name}
         type="text"
         {...register(name, { pattern: /^\S[^\s@]*@\S+$/, required })}
+        className="rounded-full h-12 px-6 bg-slate-50 border-slate-200 focus:border-primary focus:ring-primary"
       />
 
       {errors[name] && <Error name={name} />}
