@@ -11,7 +11,7 @@ import { AchievementHero } from '@/heros/AchievementHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
-import RichText from '@/components/RichText'
+import { RenderBlocks } from '@/blocks/RenderBlocks'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -60,7 +60,7 @@ export default async function Achievement({ params: paramsPromise }: Args) {
 
       <div className="flex flex-col items-center gap-4 pt-8">
         <div className="container mx-auto">
-          <RichText className="" data={achievement.content} enableGutter={false} />
+          <RenderBlocks blocks={achievement.layout} />
           {achievement.relatedAchievements && achievement.relatedAchievements.length > 0 && (
             <RelatedPosts
               className="mt-12 max-w-208 lg:grid lg:grid-cols-subgrid col-start-1 col-span-3 grid-rows-[2fr]"
@@ -92,7 +92,6 @@ const queryAchievementBySlug = cache(async ({ slug }: { slug: string }) => {
       collection: 'achievements',
       draft,
       limit: 1,
-      depth: 0,
       overrideAccess: draft,
       pagination: false,
       where: {

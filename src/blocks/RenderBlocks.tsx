@@ -14,6 +14,7 @@ import Process from '@/blocks/Process/Component'
 import Testimonials from '@/blocks/Testimonials/Component'
 import BlogList from '@/blocks/BlogList/Component'
 import { AchievementList } from '@/blocks/AchievementList/Component'
+import { RichTextBlock } from '@/blocks/RichText/Component'
 import { RevealAnimation } from '@/components/RevealAnimation'
 
 const blockComponents = {
@@ -29,6 +30,7 @@ const blockComponents = {
   testimonials: Testimonials,
   blogList: BlogList,
   achievementList: AchievementList,
+  richText: RichTextBlock,
 }
 
 export const RenderBlocks: React.FC<{

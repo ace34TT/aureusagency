@@ -16,6 +16,7 @@ import { Banner } from '@/blocks/Banner/config'
 import { Code } from '@/blocks/Code/config'
 import { MediaBlock } from '@/blocks/MediaBlock/config'
 import { MarqueeBlock } from '@/blocks/Marquee/config'
+import { RichText } from '@/blocks/RichText/config'
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 import { populateAuthors } from '../Posts/hooks/populateAuthors' // Reusing hook from Posts
 import { revalidateDelete, revalidateAchievement } from './hooks/revalidateAchievement'
@@ -87,21 +88,9 @@ export const Achievements: CollectionConfig<'achievements'> = {
               label: 'Project Link',
             },
             {
-              name: 'content',
-              type: 'richText',
-              editor: lexicalEditor({
-                features: ({ rootFeatures }) => {
-                  return [
-                    ...rootFeatures,
-                    HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    BlocksFeature({ blocks: [Banner, Code, MediaBlock, MarqueeBlock] }),
-                    FixedToolbarFeature(),
-                    InlineToolbarFeature(),
-                    HorizontalRuleFeature(),
-                  ]
-                },
-              }),
-              label: false,
+              name: 'layout',
+              type: 'blocks',
+              blocks: [Banner, Code, MediaBlock, MarqueeBlock, RichText],
               required: true,
             },
           ],
