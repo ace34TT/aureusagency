@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-import type { Page } from '@/payload-types'
+import type { Achievement, Page, Post } from '@/payload-types'
 
 import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
@@ -16,6 +16,8 @@ import BlogList from '@/blocks/BlogList/Component'
 import { AchievementList } from '@/blocks/AchievementList/Component'
 import { RichTextBlock } from '@/blocks/RichText/Component'
 import { RevealAnimation } from '@/components/RevealAnimation'
+import { Banner } from '@/blocks/Banner/Component'
+import { Code } from '@/blocks/Code/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -31,10 +33,12 @@ const blockComponents = {
   blogList: BlogList,
   achievementList: AchievementList,
   richText: RichTextBlock,
+  banner: Banner,
+  code: Code,
 }
 
 export const RenderBlocks: React.FC<{
-  blocks: Page['layout'][0][]
+  blocks: Page['layout'] | Post['layout'] | Achievement['layout']
   searchParams?: { [key: string]: string | string[] | undefined }
 }> = (props) => {
   const { blocks, searchParams } = props

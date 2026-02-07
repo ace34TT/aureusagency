@@ -11,7 +11,7 @@ import {
   RichText as ConvertRichText,
 } from '@payloadcms/richtext-lexical/react'
 
-import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component'
+import { Code, CodeBlockProps } from '@/blocks/Code/Component'
 import { Marquee } from '@/blocks/Marquee/Component'
 
 import type {
@@ -20,7 +20,7 @@ import type {
   MarqueeBlock as MarqueeBlockProps,
   MediaBlock as MediaBlockProps,
 } from '@/payload-types'
-import { BannerBlock } from '@/blocks/Banner/Component'
+import { Banner } from '@/blocks/Banner/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { cn } from '@/utilities/ui'
 import React from 'react'
@@ -44,7 +44,7 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
   ...defaultConverters,
   ...LinkJSXConverter({ internalDocToHref }),
   blocks: {
-    banner: ({ node }) => <BannerBlock className="col-start-2 mb-4" {...node.fields} />,
+    banner: ({ node }) => <Banner className="col-start-2 mb-4" {...node.fields} />,
     mediaBlock: ({ node }) => (
       <MediaBlock
         className="col-start-1 col-span-3"
@@ -55,7 +55,7 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
         disableInnerContainer={true}
       />
     ),
-    code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
+    code: ({ node }) => <Code className="col-start-2" {...node.fields} />,
     cta: ({ node }) => <CallToActionBlock {...node.fields} />,
     marquee: ({ node }) => <Marquee {...node.fields} />,
   },

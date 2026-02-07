@@ -247,6 +247,7 @@ export const seed = async ({
     await payload.create({
       collection: 'posts',
       depth: 0,
+      draft: false,
       context: {
         disableRevalidate: true,
       },
@@ -255,6 +256,7 @@ export const seed = async ({
         heroImage: imageHomeDoc.id, // Corrected variable name
         tags: assignedTags.filter(Boolean),
         authors: [demoAuthor.id], // Corrected field name
+        _status: 'published',
       },
     })
   }
@@ -326,7 +328,7 @@ export const seed = async ({
           'seed_debug.log',
           `Failed to seed achievement ${achievement.slug}: ${err}\n`,
         )
-        payload.logger.error(`Failed to seed achievement ${achievement.slug}:`, err)
+        payload.logger.error(`Failed to seed achievement ${achievement.slug}: ${err}`)
       }
     }),
   )
