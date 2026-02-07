@@ -240,14 +240,9 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center w-full">
               {/* Left Logo */}
-              <div className="flex items-center w-24 h-24">
+              <div className="flex items-center w-16 h-16">
                 <Link href="/" className="flex items-center w-full h-full">
-                  <div
-                    className={cn(
-                      'relative transition-all duration-200 ease-in-out',
-                      isScrolled ? 'scale-95' : 'scale-100',
-                    )}
-                  >
+                  <div className={cn('relative transition-all duration-200 ease-in-out')}>
                     {logoUrl ? (
                       <Image
                         src={logoUrl}

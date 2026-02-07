@@ -23,7 +23,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <head>
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
-        <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+        {/*<link href="/favicon.svg" rel="icon" type="image/svg+xml" />*/}
       </head>
       <body className={'bg-[#F5F2EB]'}>
         <Providers>
@@ -39,6 +39,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 export const metadata: Metadata = {
   metadataBase: new URL(getServerSideURL()),
   openGraph: mergeOpenGraph(),
+  icons: {
+    icon: '/favicon.ico',
+  },
   twitter: {
     card: 'summary_large_image',
     creator: '@payloadcms',
