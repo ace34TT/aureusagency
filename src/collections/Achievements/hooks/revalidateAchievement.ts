@@ -1,6 +1,6 @@
 import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload'
 
-import { revalidatePath, revalidateTag } from 'next/cache'
+import { revalidatePath } from 'next/cache'
 
 // Use 'any' for now since Achievement type is not yet generated
 export const revalidateAchievement: CollectionAfterChangeHook<any> = ({
@@ -15,7 +15,6 @@ export const revalidateAchievement: CollectionAfterChangeHook<any> = ({
       payload.logger.info(`Revalidating achievement at path: ${path}`)
 
       revalidatePath(path)
-      revalidateTag('achievements-sitemap')
     }
 
     // If the achievement was previously published, we need to revalidate the old path
@@ -25,7 +24,6 @@ export const revalidateAchievement: CollectionAfterChangeHook<any> = ({
       payload.logger.info(`Revalidating old achievement at path: ${oldPath}`)
 
       revalidatePath(oldPath)
-      revalidateTag('achievements-sitemap')
     }
   }
   return doc
@@ -36,7 +34,6 @@ export const revalidateDelete: CollectionAfterDeleteHook<any> = ({ doc, req: { c
     const path = `/achievements/${doc?.slug}`
 
     revalidatePath(path)
-    revalidateTag('achievements-sitemap')
   }
 
   return doc
